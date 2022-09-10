@@ -1,0 +1,102 @@
+NAME
+     stapler – Attach and validate tickets for notarized executables
+
+SYNOPSIS
+     stapler staple [-q] [-v] path
+     stapler validate [-q] [-v] path
+
+DESCRIPTION
+     The stapler utility attaches tickets for notarized executables to app
+     bundles, disk images, and packages.
+
+     Developer ID requires apps to be notarized before distribution. A ticket
+     contains a list of the code signatures for executables within a supported
+     file format. The stapler utility downloads and attaches (staples) a
+     ticket to these files, enabling Gatekeeper to verify that executables
+     they contain have been properly notarized.
+
+     Stapling is performed automatically by Xcode as part of the Developer ID
+     distribution workflow for notarized apps. The stapler utility must be
+     applied separately to a supported file format that was built or packaged
+     with command-line tools, before distributing it. This enables Gatekeeper
+     to verify the ticket offline.
+
+     Stapling does not invalidate the code signature and must be run after an
+     executable or archive has been code-signed and notarized with Developer
+     ID. Code-signing a supported file format invalidates any stapled tickets,
+     so stapler staple must be run again if this occurs.
+
+     stapler requires internet access to retrieve tickets when stapling or
+     validating.
+
+SUPPORTED FILE FORMATS
+     stapler works only with UDIF disk images, signed "flat" installer
+     packages, and certain code-signed executable bundles such as ".app".
+     Passing an unsigned "flat" installer package or an unsigned executable
+     bundle in path to stapler is considered an error.
+
+OPTIONS
+     The options are as follows:
+
+     staple   Retrieves a ticket and attaches it to the supported file format
+              at path. The executable must have completed the notarization
+              process.
+
+     validate
+              Validates a stapled ticket. This includes verifying the contents
+              and comparing it to the latest ticket retrieved from the
+              ticketing service.
+
+     -q, --quiet
+              When validating or attaching tickets, stapler will only return
+              the exit code.  --verbose overrides this option.
+
+     -v, --verbose
+              Sets the output of stapler to include additional diagnostic
+              output.  Without the verbose option, no output is produced upon
+              success.
+
+EXAMPLES
+     stapler staple Example.app
+              Retrieve and staple a ticket to Xcode.app.
+
+     stapler validate -v SampleInstaller.pkg
+              Validate the ticket stapled to a package with verbose output.
+
+DIAGNOSTICS
+     stapler returns 0 on successful stapling or validation.  If an error
+     occurs, it returns one of the non-zero codes defined in sysexits(3).
+     stapler exits upon encountering the first error. It may exit with codes
+     other than those listed below in less common scenarios.
+
+     [EX_USAGE]         Options appear malformed or are missing.
+
+     [EX_NOINPUT]       path cannot be found, is not code-signed, or is not of
+                        a supported file format, or, if the validate option is
+                        passed, the existing ticket is missing or invalid.
+
+     [EX_DATAERR]       The ticket data is invalid.
+
+     [EX_NOPERM]        The ticket has been revoked by the ticketing service.
+
+     [EX_NOHOST]        The path has not been previously notarized or the
+                        ticketing service returns an unexpected response.
+
+     [EX_CANTCREAT]     The ticket has been retrieved from the ticketing
+                        service and was properly validated but the ticket
+                        could not be written out to disk.
+
+SEE ALSO
+     codesign(1), spctl(8), syspolicyd(8)
+
+HISTORY
+     The stapler command first appeared in macOS 10.14.
+
+BUGS
+     stapler can only act on one path per invocation. If multiple paths are
+     specified, stapler will only process the last path specified.
+
+     The folder containing path must be writable.
+
+     If an executable bundle contains a symlink at Contents/CodeResources, it
+     must be manually deleted before staple will function.

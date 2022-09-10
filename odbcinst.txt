@@ -1,0 +1,111 @@
+NAME
+       odbcinst - A unixODBC utility for managing configuration files
+
+
+SYNOPSIS
+       odbcinst ACTION OBJECT OPTIONS
+
+
+DESCRIPTION
+       odbcinst is a command-line utility allowing users who develop install
+       scripts or packages for ODBC drivers to easily create or remove entries
+       in odbc.ini and odbcinst.ini.
+
+       The utility is part of the odbcinst component of unixODBC and
+       complements the shared library of the same name (libodbcinst).
+
+
+OPTIONS
+   ACTIONS
+       -i     Install a new OBJECT (by adding a section to a configuration
+              file).
+
+
+       -u     Uninstall an existing OBJECT (by removing a section from a
+              configuration file).
+
+
+       -q     Query ODBC configuration files and print available options for
+              the specified OBJECT.
+
+
+       -j     Print the current configuration of unixODBC, including paths to
+              configuration files.
+
+
+       -c     Call SQLCreateDataSource.
+
+
+       -m     Call SQLManageDataSources.
+
+
+       --version
+              Display the program version.
+
+
+   OBJECTS
+       -d     The specified ACTION affects a driver (and thus the odbcinst.ini
+              configuration file).
+
+
+       -s     The specified ACTION affects a data source (and thus the user or
+              system odbc.ini configuration file).
+
+
+   OPTIONS
+       -f FILE
+              FILE is a template describing the configuration of the installed
+              OBJECT (only valid with the -i ACTION).
+
+
+       -r     Act in the same way as for the -f OPTION, but take standard
+              input as the template file.
+
+
+       -n NAME
+              Specifies the NAME of the OBJECT.
+
+
+       -v     Disable all information, warning and error messages.
+
+
+       -l     The specified data source is system-wide. This option is only
+              valid when used with the -s OBJECT.
+
+
+       -h     The specified data source is user-specific. This option is only
+              valid when used with the -s OBJECT.
+
+
+RETURN VALUES
+       odbcinst returns zero on success and a non-zero value on failure.
+
+
+FILES
+       /etc/odbcinst.ini
+              Configuration file containing all database driver definitions.
+              See odbcinst.ini(5) for more information.
+
+       /etc/odbc.ini
+              Configuration file containing system-wide Data Source Name (DSN)
+              definitions. See odbc.ini(5) for more information.
+
+       $HOME/.odbc.ini
+              Configuration file containing user-specific Data Source Name
+              (DSN) definitions. See odbc.ini(5) for more information.
+
+
+SEE ALSO
+       odbcinst.ini(5), odbc.ini(5)
+
+
+AUTHORS
+       The authors of unixODBC are Peter Harvey <pharvey@codebydesign.com> and
+       Nick Gorham <nick@lurcher.org>.
+
+       For a full list of contributors, refer to the AUTHORS file.
+
+
+COPYRIGHT
+       unixODBC is licensed under the GNU Lesser General Public License. For
+       details about the license, see the COPYING file.

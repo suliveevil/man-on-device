@@ -1,0 +1,8 @@
+NAME
+     usernoted – Notification Center daemon
+
+DESCRIPTION
+     usernoted is a daemon that provides notification services on the system
+
+     There are no options for usernoted, and users should not run usernoted
+     manually.

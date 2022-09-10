@@ -1,0 +1,5 @@
+NAME
+     uasysdiagone – Produce system diagnostics for UserActivity.framework
+
+DESCRIPTION
+     uasysdiagone is used to dump a diagnostic state from useractivityd.

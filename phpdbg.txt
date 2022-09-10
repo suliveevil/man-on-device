@@ -1,0 +1,91 @@
+NAME
+       phpdbg - The interactive PHP debugger
+
+SYNOPSIS
+       phpdbg [options] [file] [args...]
+
+DESCRIPTION
+       phpdbg is a lightweight, powerful, easy to use debugging platform for
+       PHP.
+
+OPTIONS
+       -c path|file   Look for php.ini file in the directory path or use the
+                      specified file
+
+       -d foo[=bar]   Define INI entry foo with value bar
+
+       -n             No php.ini file will be used
+
+       -z file        Load Zend extension file
+
+       -q             Do not print banner on startup
+
+       -v             Enable oplog output
+
+       -b             Disables use of color on the console
+
+       -i path|file   Override .phpgdbinit location (implies -I)
+
+       -I             Ignore .phpdbginit (default init file)
+
+       -r             Jump straight to run
+
+       -e             Generate extended information for debugger/profiler
+
+       -E             Enable step through eval()
+
+       -s delimiter   Read code to execute from stdin with an optional
+                      delimiter
+
+       -S sapi_name   Override SAPI name
+
+       -p opcode      Output opcodes and quit
+
+       -h             Print the help overview
+
+       -V             Version number
+
+       args...        Arguments passed to script. Use '--' args when first
+                      argument starts with '-' or script is read from stdin
+
+NOTES
+       Passing -rr will cause phpdbg to quit after execution, rather than
+       returning to the console
+
+FILES
+       php.ini        The standard configuration file
+
+       .phpdbginit    The init file
+
+SEE ALSO
+       The online manual can be found at
+       http://php.net/manual/book.phpdbg.php
+
+BUGS
+       You can view the list of known bugs or report any new bug you found at
+       http://bugs.php.net/
+
+AUTHORS
+       Written by Felipe Pena, Joe Watkins and Bob Weinand, formatted by
+       Ondřej Surý for Debian project.
+
+       A List of active developers can be found at
+       http://www.php.net/credits.php
+
+       And last but not least PHP was developed with the help of a huge amount
+       of contributors all around the world.
+
+VERSION INFORMATION
+       This manpage describes phpdbg, for PHP version 8.1.10.
+
+COPYRIGHT
+       Copyright © The PHP Group
+
+       This source file is subject to version 3.01 of the PHP license, that is
+       bundled with this package in the file LICENSE, and is available through
+       the world-wide-web at the following url:
+       https://www.php.net/license/3_01.txt
+
+       If you did not receive a copy of the PHP license and are unable to
+       obtain it through the world-wide-web, please send a note to
+       license@php.net so we can mail you a copy immediately.

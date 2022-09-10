@@ -1,0 +1,6 @@
+NAME
+     symbolscache – display and modify symbolcache information
+
+DESCRIPTION
+     The symbolscache command may be used to list, add, and delete entries
+     from the global symbolscache.

@@ -1,0 +1,33 @@
+NAME
+       dltest - A simple library symbol test program
+
+
+SYNOPSIS
+       dltest [ library symbol ]
+
+
+DESCRIPTION
+       dltest is a simple program that determines whether a symbol appears in
+       a (shared object) library.
+
+       The name of the library must be prefixed by a full system path.
+
+       If no parameters are provided, dltest prints a short help message.
+
+
+EXAMPLES
+       To determine if the symbol printf is found in libc-2.18.so, run:
+
+              $ dltest /usr/lib/libc-2.18.so printf
+
+
+AUTHORS
+       The authors of unixODBC are Peter Harvey <pharvey@codebydesign.com> and
+       Nick Gorham <nick@lurcher.org>.
+
+       For a full list of contributors, refer to the AUTHORS file.
+
+
+COPYRIGHT
+       unixODBC is licensed under the GNU Lesser General Public License. For
+       details about the license, see the COPYING file.

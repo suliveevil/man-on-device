@@ -1,0 +1,11 @@
+NAME
+     BTLEServerAgent
+
+SYNOPSIS
+     BTLEServerAgent
+
+DESCRIPTION
+     BTLEServerAgent is a process that handles Bluetooth LE features.
+
+SEE ALSO
+     BTLEServer

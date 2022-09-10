@@ -1,0 +1,18 @@
+NAME
+     resolveLinks – Resolves link requests in collections of HTML files
+
+SYNOPSIS
+     resolveLinks [-a] [-b basepath] [-d debugflags] [-D] [-h]
+                  [-i installpath] [-n] [-N] [-P] [-r refanchorprefix]
+                  [-s seedfile] [-S seedfilebasepath] [-t nthreads]
+                  [-x xreffile] directory
+
+ENVIRONMENT
+     This program is a helper tool that is usually run by the gatherHeaderDoc
+     tool to generate links within HeaderDoc output.  Although it is usually
+     not run directly, it can be useful to do so when linking together
+     multiple documentation sets in an installed set.
+
+SEE ALSO
+     For more information on gatherHeaderDoc and HeaderDoc, see
+     headerdoc2html(1) and gatherheaderdoc(1).

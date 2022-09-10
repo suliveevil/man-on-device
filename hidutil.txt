@@ -1,0 +1,8 @@
+NAME
+     hidutil – HID event system debug utility
+
+SYNOPSIS
+     hidutil [command] [options]
+
+DESCRIPTION
+     See hidutil [help] for more information.

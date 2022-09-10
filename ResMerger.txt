@@ -1,0 +1,52 @@
+NAME
+     /usr/bin/ResMerger – Merges resource forks or files into one resource
+     file (DEPRECATED)
+
+SYNOPSIS
+     /usr/bin/ResMerger [-fileCreator <fileCreator>] [-fileType <fileType>]
+                        [-[a]ppend] [-srcIs RSRC | DF] [-dstIs RSRC | DF]
+                        file ... -o <dest-file>
+
+DESCRIPTION
+     Tools supporting Carbon development, including /usr/bin/ResMerger, were
+     deprecated with Xcode 6.
+
+     The /usr/bin/ResMerger command merges the Carbon Resource Manager
+     resource data in multiple files into a single file.  The output file may
+     be one of the input files.
+
+     The /usr/bin/ResMerger command takes the following flags and arguments:
+
+     -fileCreator <fileCreator>
+       Sets the HFS creator type of the output file.  The default is '????'.
+
+     -fileType <fileType>
+       Sets the HFS file type of the output file.  The default is '????'.
+
+     -[a]ppend
+       Append to output file, rather than overwriting it.
+
+     -srcIs RSRC | DF
+       The fork in which to look for resources in the input file(s).  The
+       default is the data fork (DF).
+
+     -dstIs RSRC | DF
+       The fork in which to write resources in the output file.  The default
+       is the data fork (DF).
+
+     -skip <type>
+       Specifies resource type to skip during the resource merge. May be used
+       multiple times, to specify multiple resource types to skip.
+
+     file
+       Specifies one or more input files.  Note that as there is only one
+       srcIs flag, the input files must be homogenous, that is, the resources
+       must be in the same fork of all input files.
+
+     -o <dest-file>
+       Specifies the output file.  If the fork designated by -dstIs exists, it
+       is overwritten unless the -a flag is provided; if it does not exist, it
+       is created.
+
+SEE ALSO
+     Rez(1), DeRez(1), RezWack(1), UnRezWack(1), SplitForks(1)

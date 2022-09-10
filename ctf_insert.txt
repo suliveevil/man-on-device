@@ -1,0 +1,25 @@
+NAME
+       ctf_insert - insert Compact C Type Format data into a mach_kernel file
+
+SYNOPSIS
+       ctf_insert input [ -arch arch file ]... -o output
+
+DESCRIPTION
+       ctf_insert inserts CTF (Compact C Type Format) data into a mach_kernel
+       binary, storing the data in a newly created (__CTF,__ctf) section. This
+       section must not be present in the input file.  ctf_insert(1) must be
+       passed one -arch argument for each architecture in a universal file, or
+       exactly one -arch for a thin file.
+
+       input  specifies the input mach_kernel.
+
+       -o output
+              specifies the output file.
+
+       -arch arch file
+              specifies a file of CTF data to be used for the specified arch
+              in a Mach-O or universal file. The file's content will be stored
+              in a newly created (__CTF,__ctf) section.
+
+SEE ALSO
+       otool(1), segedit(1).

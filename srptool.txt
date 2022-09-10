@@ -1,0 +1,99 @@
+NAME
+       srptool - GnuTLS SRP tool
+
+SYNOPSIS
+       srptool [-flags] [-flag [value]] [--option-name[[=| ]value]]
+
+       All arguments must be options.
+
+DESCRIPTION
+       Simple program that emulates the programs in the Stanford SRP (Secure
+       Remote Password) libraries using GnuTLS.  It is intended for use in
+       places where you don't expect SRP authentication to be the used for
+       system users.
+
+       In  brief,  to use SRP you need to create two files. These are the
+       password file that holds the users and the verifiers associated with
+       them  and  the configuration file to hold the group parameters (called
+       tpasswd.conf).
+
+
+OPTIONS
+       -d num, --debug=num
+              Enable debugging.  This option takes an integer number as its
+              argument.  The value of num is constrained to being:
+                  in the range 0 through 9999
+
+              Specifies the debug level.
+
+       -i num, --index=num
+              This option takes an integer number as its argument.
+
+       -u str, --username=str
+
+       -p str, --passwd=str
+
+       -s num, --salt=num
+              This option takes an integer number as its argument.
+
+       --verify
+              Verifies the password provided against the password file.
+
+       -v str, --passwd-conf=str
+              Specify a filename or a PKCS #11 URL to read the CAs from.
+
+       --create-conf=str
+              Generate a password configuration file.
+
+              This generates a password configuration file (tpasswd.conf)
+              containing the required for TLS parameters.
+
+       -v arg, --version=arg
+              Output version of program and exit.  The default mode is `v', a
+              simple version.  The `c' mode will print copyright information
+              and `n' will print the full copyright notice.
+
+       -h, --help
+              Display usage information and exit.
+
+       -!, --more-help
+              Pass the extended usage information through a pager.
+
+
+
+EXAMPLES
+       To create tpasswd.conf which holds the g and n values for SRP protocol
+       (generator and a large prime), run:
+           $ srptool --create-conf /etc/tpasswd.conf
+
+       This command will create /etc/tpasswd and will add user 'test' (you
+       will also be prompted for a password). Verifiers are stored by default
+       in the way libsrp expects.
+           $ srptool --passwd /etc/tpasswd --passwd-conf /etc/tpasswd.conf -u test
+
+
+       This command will check against a password. If the password matches the
+       one in /etc/tpasswd you will get an ok.
+           $ srptool --passwd /etc/tpasswd --passwd\-conf /etc/tpasswd.conf --verify -u test
+
+EXIT STATUS
+       One of the following exit values will be returned:
+
+       0  (EXIT_SUCCESS)
+              Successful program execution.
+
+       1  (EXIT_FAILURE)
+              The operation failed or the command syntax was not valid.
+
+SEE ALSO
+       gnutls-cli-debug (1), gnutls-serv (1), srptool (1), psktool (1),
+       certtool (1)
+
+AUTHORS
+COPYRIGHT
+       Copyright (C) 2020-2021 Free Software Foundation, and others all rights
+       reserved.  This program is released under the terms of the GNU General
+       Public License, version 3 or later
+
+BUGS
+       Please send bug reports to: bugs@gnutls.org

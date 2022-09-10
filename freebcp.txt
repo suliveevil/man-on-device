@@ -1,0 +1,175 @@
+NAME
+     freebcp – bulk loading utility for Sybase and Microsoft databases
+
+SYNOPSIS
+     freebcp [[⟨database⟩.]⟨owner⟩.]⟨object_name⟩ {in | [query]out} datafile
+             {-c | -n | -f formatfile} [-S servername] [-D dbname]
+             [-U username] [-P password] [-b batchsize] [-F firstrow]
+             [-L lastrow] [-e errfile] [-I interfaces] [-m maxerror]
+             [-t field_term] [-r row_term] [-h hints] [-T textsize]
+             [-A packet_size] [-O options] [-i inputfile] [-o outputfile]
+             [-C charset] [-EdVv]
+
+DESCRIPTION
+     freebcp is a utility program distributed with FreeTDS.  freebcp
+     replicates (in part at least) the functionality of the bcp utility
+     programs distributed by Sybase and Microsoft.  freebcp makes use of the
+     DB-Library bcp API provided by FreeTDS. This API is also available to
+     application developers.
+
+     The manual pages or online help for Sybase or SQL Server can be
+     referenced for more detailed information on bcp functionality.
+
+TABLES AND FILES
+     database
+             The name of the database containing object to be copied.
+             Optional if the table/view is in the default database for
+             username.
+
+     schema  The schema of the object being copied. If not provided, the
+             default schema for username is used.
+
+     object  The name of the database object you wish to access, typically a
+             table. It can also be a view.  All views can be read; some can be
+             written, subject to constraints.  With queryout, object can also
+             be an SQL query.
+
+     in      Copy data from a host file to a database table.
+
+     out     Copy data from a database table to a host file.
+
+     queryout
+             indicates that table_name is in fact SQL, rather than a database
+             object.  freebcp will execute the query and write the results to
+             a file. (It is a good idea to have the query return one and only
+             one result set.)
+
+     datafile
+             The name of an operating system file.
+
+OPTIONS
+     -A packet_size
+             Set the size of a TDS packet to packet_size.  Not sure why you
+             would want to do this, except as an experiment.
+
+     -D dbname
+             The name of the default database to use.  Overrides default
+             database associated with the login account.  Causes freebcp to
+             issue a USE dbname command immediately after logging in, before
+             commencing BCP operations.
+
+     -E      Write the data in datafile to the table's IDENTITY column.
+             Without this flag, the identity data present in the datafile will
+             be ignored, and new IDENTITY values will be generated for the
+             imported rows.
+
+     -F firstrow
+             The first row to copy from the input file or database table. The
+             default is the first row, row 1.
+
+     -I interfaces
+             The name and location of the interfaces file to search when
+             connecting to servername. Overrides freetds.conf.
+
+     -L lastrow
+             The last row to copy from an input file  or database table. The
+             default is the last row.
+
+     -O options
+             SQL text to set connection options prior to the bcp operation.
+             If options is a valid filename, the SQL is read from the file
+             instead. Sometimes needed for queryout.  Example: -O `SET
+             QUOTED_IDENTIFIER ON'.
+
+     -P password
+             The password associated with username.
+
+     -S servername
+             The name of the Database Server to which to connect.
+
+     -T textsize
+             For text or image columns, set the maximum number of characters
+             to request from the server. Defaults to the setting in
+             freetds.conf.  If not specified anywhere, defaults to the full
+             size of the data.
+
+     -U username
+             A database login name.  For TDS 7+ connections, a domain login is
+             attempted if username is not provided.
+
+     -b batchsize
+             The number of rows per batch of data copied. Batching applies
+             only when you are bulk copying into the database. Each batch of
+             data is effectively “committed” into the database. The default
+             value for batchsize is 1000.
+
+     -c      The host data file is (or will be) in "character" format, i.e., a
+             text file. Encoding is determined by the client charset attribute
+             in freetds.conf.
+
+     -d      Turn off any logging. (Unintuitive, perhaps.)
+
+     -e errfile
+             Write errors to errfile.  For uploads.  Includes line and column
+             information, and the row data.
+
+     -f formatfile
+             The format of the host data file is described by formatfile.  The
+             layout of formatfile is identical to that understood by the
+             Sybase and Microsoft bcp utilities, but is too complicated to
+             describe here.
+
+     -h hints
+             Set bcp hints. For valid values, cf.  bcp_options() in the
+             FreeTDS Reference Manual.
+
+     -m maxerror
+             Stop after encountering maxerror errors. Default 10.
+
+     -n      The host data file is in “native” format.  This is a format that
+             freebcp will be able to process, but is not portable or readable.
+
+     -r row_term
+             The row terminator for a character file.  May be more than one
+             character.  Default is newline ('\n'). Cf.  -c, above.
+
+     -t field_term
+             The field terminator for character file. Also known as a column
+             delimiter. May be more than one character.  Default is tab
+             ('\t'). Cf.  -c, above.
+
+     -v
+
+     -V      Print the version information and exit.
+
+     -i inputfile
+             Read input data from file specified.
+
+     -o outputfile
+             Write output data to file specified.
+
+     -C charset
+             Specify character set to use to talk to server.
+
+ENVIRONMENT
+     DSQUERY default servername
+
+NOTES
+     When connecting to a Sybase database server, it is required that the TDS
+     5.0 protocol be used. When connecting to a Microsoft SQL Server 2000
+     database server, the TDS 7 (or later) protocol is required.
+
+     Sybase and Microsoft define different versions of the bcp portion of TDS
+     4.2.  Because FreeTDS has no way of knowing which type of server it's
+     connected to, freebcp does not support version 4.2 of the TDS protocol.
+
+HISTORY
+     freebcp first appeared in FreeTDS 0.60
+
+AUTHORS
+     The freebcp utility was written by Bill Thompson
+     ⟨thompbil@exchange.uk.ml.com⟩
+
+BUGS
+     Currently, there is no support for text data types in freebcp, when SQL
+     Server 2000 is the target server.

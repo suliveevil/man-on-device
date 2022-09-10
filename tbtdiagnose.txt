@@ -1,0 +1,10 @@
+NAME
+     tbtdiagnose - collects diagnostic information to help troubleshoot
+     Thunderbolt issues.
+
+SYNOPSIS
+     tbtdiagnose
+
+DESCRIPTION
+     Use tbtdiagnose to collect diagnostic information to help with
+     investigation of Thunderbolt issues.

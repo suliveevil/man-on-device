@@ -1,0 +1,98 @@
+NAME
+       odbc_config - Generates compiler information intended for use when
+       developing a unixODBC client
+
+
+SYNOPSIS
+       odbc_config [--prefix] [--exec-prefix] [--include-prefix]
+                   [--lib-prefix] [--bin-prefix] [--version] [--libs]
+                   [--static-libs] [--libtool-libs] [--cflags] [--odbcversion]
+                   [--odbcini] [--odbcinstini] [--header] [--ulen]
+
+
+DESCRIPTION
+       odbc_config provides information about how unixODBC was compiled for
+       your system and architecture. The information generated is useful for
+       building unixODBC clients and similar programs.
+
+
+OPTIONS
+       --prefix
+              Prefix for architecture-independent files.
+
+
+       --exec-prefix
+              Prefix for architecture-dependent files.
+
+
+       --include-prefix
+              Directory containing C header files for unixODBC.
+
+
+       --lib-prefix
+              Directory containing unixODBC shared libraries.
+
+
+       --bin-prefix
+              Directory containing unixODBC utilities.
+
+
+       --version
+              Current version of unixODBC.
+
+
+       --libs Compiler flags for linking dynamic libraries.
+
+
+       --static-libs
+              Absolute file name of the unixODBC static library (libodbc.a).
+
+
+       --libtool-libs
+              Absolute file name of the unixODBC libtool library (libodbc.la).
+
+
+       --cflags
+              Outputs compiler flags to find header files, as well as critical
+              compiler flags and defines used when compiling the libodbc
+              library.
+
+
+       --odbcversion
+              Version of the ODBC specification used by unixODBC.
+
+
+       --odbcini
+              Absolute file name of the system-wide DSN configuration file
+              odbc.ini.
+
+
+       --odbcinstini
+              Absolute file name of the unixODBC driver configuration file
+              odbcinst.ini.
+
+
+       --header
+              Definitions of C preprocessor constants used by unixODBC.
+              Generated output can be piped into a C header file.
+
+
+       --ulen Compiler flag that defines SIZEOF_SQLULEN.
+
+
+SEE ALSO
+       unixODBC(7), odbcinst.ini(5), odbc.ini(5)
+
+       "The unixODBC Administrator Manual (HTML)"
+
+
+AUTHORS
+       The authors of unixODBC are Peter Harvey <pharvey@codebydesign.com> and
+       Nick Gorham <nick@lurcher.org>.
+
+       For a full list of contributors, refer to the AUTHORS file.
+
+
+COPYRIGHT
+       unixODBC is licensed under the GNU Lesser General Public License. For
+       details about the license, see the COPYING file.

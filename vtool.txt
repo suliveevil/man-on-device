@@ -1,0 +1,191 @@
+NAME
+     vtool – Mach-O version number utility
+
+SYNOPSIS
+     vtool [-arch ⟨arch⟩] ... ⟨show_command⟩ ... file
+     vtool [-arch ⟨arch⟩] ... ⟨set_command⟩ ... [-replace] -output out_file
+           file
+     vtool [-arch ⟨arch⟩] ... ⟨remove_command⟩ ... -output out_file file
+     vtool -help
+
+DESCRIPTION
+     The vtool utility displays and edits build and source version numbers
+     embedded in the Mach-O(5) file format. These version numbers are stored
+     within the Mach-O load commands, as described in the ⟨mach-o/loader.h⟩
+     header file and in the VERSION LOAD COMMANDS section below. When editing
+     files, a new out_file must be specified using the -output flag; vtool
+     will only ever write to a single output file, and input files are never
+     modified in place.
+
+     vtool operates in one of three functional modes (in addition to a help
+     mode) depending on the type of arguments specified on the command line:
+     show, set, and remove.  All of these modes operate on “universal” (multi-
+     architecture) files as well as ordinary Mach-O files. The -arch flag
+     limits operation to one or more architectures within a universal file.
+
+     Show          Show options include -show, -show-build, -show-source, and
+                   -show-space.  Only one of these commands may be specified.
+                   The version information will be printed in a manner similar
+                   to otool(1) or otool-classic(1).
+
+     Set           Set options include -set-build-tool, -set-build-version,
+                   -set-source-version, and -set-version-min.  Any number of
+                   these commands can be combined in a single vtool
+                   invocation. You can use these set commands to add a new
+                   build version to a Mach-O or to replace an existing version
+                   for a specific platform. When used with the -replace
+                   option, all existing build versions will be entirely
+                   replaced by the new build versions specified on the command
+                   line.
+
+     Remove        Remove options include -remove-build-tool,
+                   -remove-build-version, and -remove-source-version.  Any
+                   number of these commands can be combined in a single vtool
+                   invocation.
+
+     Currently vtool only operates on final linked binaries, such as
+     executable files, dynamic libraries, and bundles. Because the executable
+     code in Mach-O final linked binaries cannot be moved or resized, and
+     because the load commands reside between the mach header and the
+     executable code, there is only a limited amount of space available for
+     vtool to save changes. Set operations that add or resize load commands
+     may fail if there isn't enough space in the Mach-O file availble to hold
+     the new load commands.
+
+OPTIONS
+     -arch ⟨arch⟩  Specifies the architecture, ⟨arch⟩, for vtool to operate on
+                   when the file is a universal (multi-architecture) file. See
+                   arch(3) for the current list of architectures. More than
+                   one architecture can be specified, and by default vtool
+                   will operate on all architectures in a universal file.
+
+     -h, -help     Print full usage.
+
+     -o, -output out_file
+                   Commands that create new files write to the out_file file
+                   specified by the -output flag. This option is required for
+                   all set and remove commands.
+
+     -r, -replace  When used with -set-build-version or -set-version-min the
+                   -replace option instructs vtool to discard all of the
+                   existing build versions from the input file. Use this to
+                   change a file's platform in a single call to vtool.  When
+                   used with the -set-build-tool command, vtool will discard
+                   all of the existing tool versions from the specified
+                   platform's build version. This option has no effect on
+                   source versions.
+
+     -remove-build-tool platform tool
+                   Removes tool from the platform build version. A build
+                   version for the specified platform must exist in the input
+                   file and that build version must be an LC_BUILD_VERSION.
+                   Must be used with -output.  See VERSION LOAD COMMANDS for
+                   more information on platform and tool values.
+
+     -remove-build-version platform
+                   Removes the build version for the specified platform.  Must
+                   be used with -output.  See VERSION LOAD COMMANDS for more
+                   information on platform values.
+
+     -remove-source-version
+                   Removes the source version from the Mach-O file. Must be
+                   used with -output.
+
+     -set-build-tool platform tool version
+                   Updates the build version load command for platform to
+                   include the specified tool, adding a new tool entry if
+                   necessary. The build version must be an LC_BUILD_VERSION
+                   load command which either already existss within the input
+                   file or is newly specified on the command line. The version
+                   field takes the format X.Y.Z. Must be used with -output.
+                   See VERSION LOAD COMMANDS for more information on platform
+                   and tool values.
+
+     -set-build-version platform minos sdk [-tool tool version]
+                   Create or update the LC_BUILD_VERSION load command for
+                   platform to include the specified minos and sdk version
+                   numbers, and zero or more optional tools. The minos, sdk,
+                   and tool version all take the format X.Y.Z. Must be used
+                   with -output.  See VERSION LOAD COMMANDS for more
+                   information on platform and tool values.
+
+     -set-source-version version
+                   Create or update the source version load command.  version
+                   takes the format A.B.C.D.E. Must be used with -output.
+
+     -set-version-min platform minos sdk
+                   Create or update an LC_VERSION_MIN_* load command for
+                   platform.  This option is included to support older
+                   operating systems, and generally one should favor
+                   -set-build-version instead. Note that version min load
+                   commands do not support tool versions, and not all
+                   platforms can be expressed using version min load commands.
+                   Must be used with -output.
+
+     -show, -show-all
+                   Display the build and source versions within the specified
+                   file. This option cannot be combined with other commands.
+
+     -show-build   Display the build versions within the specified file. This
+                   option cannot be combined with other commands.
+
+     -show-source  Display the source version within the specified file. This
+                   option cannot be combined with other commands.
+
+     -show-space   Show the space in the file consumed by the mach header and
+                   the existing load commands, and measure the amount of
+                   additional space available for adding new load commands.
+
+     -             A single dash instructs vtool to stop parsing arguments.
+                   This is useful for operating on files whose names would
+                   otherwise be interpreted as an option or flag.
+
+VERSION LOAD COMMANDS
+     Modern Mach-O files can contain multiple build versions, one for each
+     unqiue platform represented in the file. A platform is a loosely-defined
+     concept within Mach-O, most often used to identify different Darwin
+     operating systems, such as macOS and iOS.  Platforms and tools can be
+     specified either by name (e.g., "macos" or "clang") or by number (e.g.,
+     "1").  Common platform and tool constants are defined in
+     ⟨mach-o/loader.h⟩ and vtool will display platform and tool names when
+     invoked with -help.
+
+     Modern Mach-O files store build information in one or more
+     LC_BUILD_VERSION load commands.  LC_BUILD_VERSION supports arbitrary
+     platforms and can include version information about the tools used to
+     build the Mach-O file. Older Mach-O files use a “version min” load
+     command, such as LC_VERSION_MIN_MACOSX.  While version min commands are
+     appropriate when deploying Mach-O files on older operating systems, be
+     aware that they do not support tool versions, and version min load
+     commands do not exist for all possible platforms. In some cases
+     LC_BUILD_VERSION and LC_VERSION_MIN_* load commands can appear in a
+     single Mach-O file, but many restrictions apply, and vtool may not
+     enforce these restrictions.  vtool will prevent you from writing more
+     than one build version load command for the same platform.
+
+     Source versions are stored in a single LC_SOURCE_VERSION load command.
+
+     When writing new load commands, vtool will attempt to preserve the order
+     of the load commands as they appear on the command line. No attempt is
+     made to preserve positions relative to other existing load commands.
+     Editing an existing load command may have the side effect of moving the
+     load command to the end of the load command list.
+
+SEE ALSO
+     ld(1), lipo(1), otool-classic(1), arch(3), Mach-O(5).
+
+HISTORY
+     LC_BUILD_VERSION first appeared in macOS 10.13 in 2017 for use with the
+     bridgeOS platform.
+
+     LC_BUILD_VERSION became the default build version load command for the
+     macOS, iOS, tvOS, and watchOS platforms in 2018 with macOS 10.14, iOS
+     12.0, and friends. The list of platforms also grew to include
+     iOSSimulator, tvOSSimulator, and watchOSSimulator.
+
+     vtool first appeared in macOS 10.15 and iOS 13.0 in 2019.
+
+BUGS
+     vtool will write load commands in a different order than ld(1).
+
+     Currently vtool does not work with object files or archives.

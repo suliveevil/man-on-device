@@ -1,0 +1,53 @@
+NAME
+       segedit - extract and replace sections from object files
+
+SYNOPSIS
+       segedit input_file [-extract seg_name sect_name data_file] ...
+       segedit input_file [-replace seg_name sect_name data_file] ... -output
+       output_file
+
+DESCRIPTION
+       segedit extracts or replaces named sections from the input_file. When
+       extracting sections, segedit will write the contents of each requested
+       section into data_file. When replacing sections, segedit will write a
+       new output_file formed from the input_file and the requested
+       replacement section content from data_file. The segment and section
+       names are the same as those given to ld(1) with the -sectcreate option.
+       The segment and section names of an object file can be examined with
+       the -l option to otool(1).  Only sections in segments that have no
+       relocation to or from them (i.e., segments marked with the SG_NORELOC
+       flag) can be replaced but all sections can be extracted.
+
+       The options to segedit(1):
+
+       -extract seg_name sect_name data_file
+              Extracts each section specified by the segment and section names
+              and places the contents in the specified data_file. If the
+              output file is `-' the section contents will be written to the
+              standard output.
+
+       -replace seg_name sect_name data_file
+              Replaces each section specified by the segment and section names
+              and takes the new section content from the specified data_file.
+              The -output output_file option must also be specified. The
+              resulting size of the section will be rounded to a multiple of 4
+              bytes and padded with zero bytes if necessary.
+
+       -output output_file
+              Specifies the new file to create when replacing sections.
+
+SEE ALSO
+       ld(1), otool(1), lipo(1)
+
+LIMITATIONS
+       Only Mach-O format files that are laid out in a contiguous address
+       space and with their segments in increasing address order can have
+       their segments replaced by this program.  This layout is what ld(1)
+       produces by default.
+
+       Only sections in segments that have no relocation to or from them
+       (i.e., segments marked with the SG_NORELOC flag) can be replaced.
+
+       segedit will not extract or replace sections from universal files. If
+       necessary, use lipo(1) to extract the desired Mach-O files from a
+       universal file before running segedit.
