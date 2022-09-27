@@ -1,0 +1,86 @@
+NAME
+     sdp – scripting definition (sdef) processor
+
+SYNOPSIS
+     sdp -f {ahst} [-o directory | file] [options...] [file]
+
+DESCRIPTION
+     sdp transforms a scripting definition (“sdef”) file, or standard input if
+     none is specified, into a variety of other formats for use with a
+     scriptable application.  The options are as follows:
+
+     -f format
+           Specify the output format.  The format may be one or more of the
+           following.  Use these when you want to control a scriptable
+           application:
+
+           h   Scripting Bridge Objective-C header.
+
+           You do not need to create a corresponding implementation file;
+           Scripting Bridge will create the class implementations at runtime.
+
+           Use these when you want to create a scriptable application:
+
+           a   Rez(1) input describing an ‘aete’ resource.
+           s   Cocoa Scripting “.scriptSuite” file.
+           t   Cocoa Scripting “.scriptTerminology” file.
+
+           These formats are only necessary when creating a scriptable
+           application that will run on Mac OS X 10.4 (Tiger) or earlier; as
+           of 10.5 (Leopard),an application may use only an sdef.
+
+     -o directory | file
+           Specify where to write the output.  This may be either a directory
+           or a file:
+
+           directory Write the output to automatically named files in that
+                   directory.  Depending on the input and formats, sdp may
+                   generate several files.
+
+           file    Write all the output to that file.  A file name of “-”
+                   writes all the output to standard output.  If multiple
+                   files are generated, all of them will be written to the
+                   same file; this is usually not a good idea.
+
+           The default is ‘-o .’, that is, generate automatically named files
+           in the current directory.
+
+     -A, --hidden
+           Output definitions even for items the scripting definition marks as
+           hidden.  In Objective-C, all such definitions will be flagged as
+           deprecated, since hidden items are usually hidden for a reason.
+
+     -V version
+           Specify the minimum compatible system version for the output, for
+           example, -V 10.10.  The default is to set the compatibility version
+           based on the environment variable SDK_NAME, which Xcode sets based
+           on the “Base SDK” build setting, or if that is not defined, to
+           assume the current system version.
+
+           10.10 and earlier: Use non-parameterized array types in Objective-C
+           files.
+
+           10.2 and earlier: Modify scriptSuite (-fs) output for certain
+           features unsupported in Cocoa Scripting at that time.
+
+     -N name, --basename name
+           [Objective-C (-fh) only] Specify the “base” name.  This name
+           becomes the base name of the generated header and the prefix
+           attached to all the generated classes.  For example, saying
+           --basename iTunes would result in a header file “iTunes.h” defining
+           a iTunesApplication class.
+
+     -i includefile
+           Include the type and class definitions from the specified sdef.  It
+           may be repeated to specify multiple files.  This option is
+           obsolete; use an XInclude element in the sdef instead.
+
+SEE ALSO
+     sdef(5)
+
+BUGS
+     sdp's error reporting leaves much to be desired.  It does not provide
+     line numbers for errors, though it will describe the element.  It will
+     not warn you of certain types of mistakes, such as using two different
+     names with the same code (or vice versa), and will return a zero status
+     even for erroneous input.

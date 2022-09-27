@@ -1,0 +1,100 @@
+NAME
+       cksum - compute and verify file checksums
+
+SYNOPSIS
+       cksum [OPTION]... [FILE]...
+
+DESCRIPTION
+       Print or verify checksums.  By default use the 32 bit CRC algorithm.
+
+       With no FILE, or when FILE is -, read standard input.
+
+       Mandatory arguments to long options are mandatory for short options
+       too.
+
+       -a, --algorithm=TYPE
+              select the digest type to use.  See DIGEST below.
+
+       -c, --check
+              read checksums from the FILEs and check them
+
+       -l, --length=BITS
+              digest length in bits; must not exceed the max for the blake2
+              algorithm and must be a multiple of 8
+
+       --tag  create a BSD-style checksum (the default)
+
+       --untagged
+              create a reversed style checksum, without digest type
+
+       -z, --zero
+              end each output line with NUL, not newline, and disable file
+              name escaping
+
+   The following five options are useful only when verifying checksums:
+       --ignore-missing
+              don't fail or report status for missing files
+
+       --quiet
+              don't print OK for each successfully verified file
+
+       --status
+              don't output anything, status code shows success
+
+       --strict
+              exit non-zero for improperly formatted checksum lines
+
+       -w, --warn
+              warn about improperly formatted checksum lines
+
+       --debug
+              indicate which implementation used
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+
+   DIGEST determines the digest algorithm and default output format:
+       sysv   (equivalent to sum -s)
+
+       bsd    (equivalent to sum -r)
+
+       crc    (equivalent to cksum)
+
+       md5    (equivalent to md5sum)
+
+       sha1   (equivalent to sha1sum)
+
+       sha224 (equivalent to sha224sum)
+
+       sha256 (equivalent to sha256sum)
+
+       sha384 (equivalent to sha384sum)
+
+       sha512 (equivalent to sha512sum)
+
+       blake2b
+              (equivalent to b2sum)
+
+       sm3    (only available through cksum)
+
+       When checking, the input should be a former output of this program, or
+       equivalent standalone program.
+
+AUTHOR
+       Written by Padraig Brady and Q. Frank Xia.
+
+REPORTING BUGS
+       GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+       Report any translation bugs to <https://translationproject.org/team/>
+
+COPYRIGHT
+       Copyright © 2022 Free Software Foundation, Inc.  License GPLv3+: GNU
+       GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+       This is free software: you are free to change and redistribute it.
+       There is NO WARRANTY, to the extent permitted by law.
+
+SEE ALSO
+       Full documentation <https://www.gnu.org/software/coreutils/cksum>
+       or available locally via: info '(coreutils) cksum invocation'

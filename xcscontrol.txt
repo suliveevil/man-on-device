@@ -1,0 +1,48 @@
+NAME
+       xcscontrol - utility for managing Xcode Server
+
+SYNOPSIS
+       xcscontrol [options...]
+
+DESCRIPTION
+       xcscontrol is a command-line utility used for managing Xcode Server
+       instances. It lives inside Xcode, and can usually be found at
+       /Contents/Developer/usr/bin/xcscontrol.
+
+OPTIONS
+       -h, --help, --usage
+              Prints basic usage information.
+
+       --version
+              Displays version information.
+
+       --preflight
+              Preflights the Xcode Server service.
+
+       --initialize
+              Initializes Xcode Server, must be called before the service is
+              usable.
+
+       --reset
+              Resets Xcode Server, removing all service data and stopping all
+              services.
+
+       --restart
+              Restart Xcode Server without removing any service data.
+
+       --shutdown
+              Stops Xcode Server.
+
+       --health
+              Fetches and displays server status and statistics.
+
+EXIT CODES
+       On success, xcscontrol will exit with a status code of 0. On failure,
+       it will exit with a status code greater than 0, and report information
+       about the failure to the console.
+
+       A status code of 3 means that the underlying operation failed. More
+       information on why this happened will be output to the console.
+
+COPYRIGHT
+       xcscontrol is Copyright (C) 2014 Apple, Inc. All rights reserved.

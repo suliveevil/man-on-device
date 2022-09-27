@@ -1,0 +1,69 @@
+NAME
+       jbig2dec - File format converter specialized in JBIG2 decoding
+
+
+SYNOPSIS
+       jbig2dec [options] file.jbig2
+       jbig2dec [options] global-stream page-stream
+
+
+DESCRIPTION
+       The jbig2dec command converts JBIG2 files to png or pbm files.
+
+       When passed a single file argument it is interpreted as a JBIG2 file
+       stream, with either sequential or random-access organization.
+
+       When passed two stream arguments, they are interpreted as the global
+       and page-specific portions of an embedded organization, as used in PDF.
+       If a particular page references no global segment stream, /dev/null can
+       be passed for the global-stream argument to request the embedded
+       parser.
+
+
+OPTIONS
+       The options are as follows:
+
+       -e, --embedded
+              Expect embedded bit stream without file header.
+
+       -o file, --output file
+              Store the decoded output in file.  Defaults to the input with a
+              different extension.  Set to - for standard output.
+
+       -t type, --format type
+              Force a particular output file format. Supported are png and
+              pbm.
+
+       -d, --dump
+              Print the structure of the JBIG2 file rather than explicitly
+              decoding it.
+
+       -m, --hash
+              Print a hash of the decoded document.
+
+       -q, --quiet
+              Suppress warnings and other diagnostic output.
+
+       -v, --verbose
+              Report additional information about the decoding process.  Pass
+              just -v for information about the file as it's being decoded.
+              This is the same as --verbose=2.  Pass --verbose=3 or higher for
+              debugging information.
+
+       -V, --version
+              Show program version information.
+
+       -h, --help
+              Show usage summary.
+
+
+REPORTING BUGS
+       Report bugs at https://bugs.ghostscript.com
+
+       Contact the developers at the IRC channel #ghostscript at freenode.net
+       or via the mailing list <gs-devel@ghostscript.com>.
+
+
+AUTHOR
+       This manpage was initially written by Sebastian Rasmussen
+       <sebras@gmail.com> for jbig2dec and the Debian Project.

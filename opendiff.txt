@@ -1,0 +1,40 @@
+NAME
+     opendiff – Use FileMerge to graphically compare or merge file or
+     directories
+
+SYNOPSIS
+     opendiff file1 file2 [-ancestor ancestorFile] [-merge mergeFile]
+     opendiff dir1 dir2 [-ancestor ancestorDirectory] [-merge mergeDirectory]
+
+DESCRIPTION
+     opendiff is a command line utility that provides a convenient way to
+     launch the FileMerge application from Terminal to graphically compare
+     files or directories.  If FileMerge is already running, opendiff will
+     connect to that running instance for the new comparison.  opendiff exits
+     immediately after the comparison request has been sent to FileMerge.
+
+     opendiff and FileMerge can be used to compare two files file1 and file2
+     or to compare two directories dir1 and dir2.
+
+     If the -ancestor flag is given, FileMerge will compare the two files or
+     directories to a common ancestor.  This is useful if two people
+     independently modify copies of a single original file or directory.
+
+     FileMerge lets you merge two files or directories together to create a
+     third file or directory.  To see the contents of a merged file, drag the
+     splitter bar at the bottom of FileMerge's file comparison window.  The
+     contents of the merged file can be directly edited within FileMerge.
+     After editing, the merged file can be saved to the file (or into the
+     directory) specified with the -merge flag.  If a destination is not
+     specified with the -merge flag, FileMerge will ask for a destination file
+     or directory when you try to save a merged file.
+
+     For further information, please consult the Help information available
+     from the FileMerge application.
+
+FILES
+     opendiff and FileMerge are installed as part of the Xcode Developer
+     Tools.
+
+SEE ALSO
+     diff(1), diff3(1), cmp(1)

@@ -1,0 +1,57 @@
+NAME
+     xed – Xcode text editor invocation tool.
+
+SYNOPSIS
+     xed [-xcwrbhv] [-l lineno] [file ...]
+
+DESCRIPTION
+     The xed tool launches the Xcode application and opens the given
+     documents, or opens a new untitled document, optionally with the contents
+     of standard in.
+
+OPTIONS
+     The options for xed are similar to those for the command-line utilities
+     for other text editors:
+
+     -x, --launch
+              Launches Xcode opening a new empty unsaved file, without reading
+              from standard input.
+
+     -c, --create
+              Creates any files in the file list that do not already exist.
+              If used without --launch, standard input will be read and piped
+              to the last file created.
+
+     -w, --wait
+              Wait for the files to be closed before exiting.  xed will idle
+              in a run loop waiting for a notification from Xcode when each
+              file is closed, and will only terminate when all are closed.
+              This is useful when invoking it from a script.
+
+     -l, --line <number>
+              Selects the given line in the last file opened.
+
+     -b, --background
+              Opens Xcode without activating it; the process that invoked xed
+              remains in front.
+
+     -h, --help
+              Prints a brief summary of usage.
+
+     -v, --version
+              Prints the version number of xed
+
+     [file...]
+              A list of file paths.  Existing files will be opened;
+              nonexistent files will be created only if the --create flag is
+              passed.  If no files are passed, then standard input will be
+              read and piped into a new untitled document (unless --launch is
+              passed).  If --create and at least one nonexistent file name is
+              passed, the last nonexistent file will be created, filled with
+              the standard input, and opened.
+
+SEE ALSO
+     xcodebuild(1), xcode-select(1), xcrun(1)
+
+HISTORY
+     xed was introduced in Mac OS X 10.5 with Xcode 3.0.

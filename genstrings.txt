@@ -1,0 +1,154 @@
+NAME
+     genstrings – generate string tables from source code
+
+SYNOPSIS
+     genstrings [-a] [-SwiftUI] [-s routine [-s routine ...]]
+                [-skipTable Table [-skipTable Table ...]]
+                [-noPositionalParameters] [-u] [-encoding charset-name]
+                [-macRoman] [-d] [-q] [-bigEndian | -littleEndian]
+                [-o outputDir] file ...
+
+DESCRIPTION
+     The genstrings utility generates one or more .strings files from the C,
+     Objective-C, C++, Objective-C++, or Swift source code files provided as
+     arguments.  A .strings file is used for localizing an application for
+     different languages, as described under Internationalization in the
+     Developer Documentation.
+
+   Source Code
+     genstrings scans the provided source files for calls to the following
+     functions, to extract their string contents and produce string tables for
+     localization. The NSLocalizedString() macro is used as an example below;
+     by default genstrings recognizes it and the CFCopyLocalizedString()
+     macro.
+
+     To enable support for the SwiftUI Text() initializer, use the -SwiftUI
+     flag.
+
+     See the documentation for the -s routine option below for information on
+     how to recognize other patterns.
+
+     The "key", "Table", and "value" arguments must be literal strings in
+     order for genstrings to be able to extract them from source code. The
+     comment argument may be either a literal string or nil, but is strongly
+     recommended to provide context to localizers.
+
+     NSLocalizedString("key", comment)
+
+     Source lines containing this form will generate an appropriate string
+     table entry to a file named Localizable.strings.
+
+     NSLocalizedStringFromTable("key", "Table", comment)
+
+     NSLocalizedStringFromTableInBundle("key", "Table", bundle, comment)
+
+     Source lines containing either of these forms will generate an
+     appropriate string table entry in a file named Table.strings.
+
+     NSLocalizedStringWithDefaultValue("key", "Table", bundle, "value",
+     comment)
+
+     Source lines with will generate an appropriate string table entry in a
+     file named Table.strings with a distinct key and value; all other forms
+     reuse the key as the value.
+
+   Format Strings and Positional Parameters
+     Keys and values of string file entries can include formatting characters.
+     For value strings with multiple formatting arguments, positional
+     parameters are generated.  These allow the order of arguments to be
+     changed as needed by each localization.  For example, "File %1$@ contains
+     %2$d bytes." could become "%2$d bytes are contained in file %1$@." in
+     another localization.
+
+     The -noPositionalParameters flag can be used to suppress generation of
+     positional parameters in string table entries.
+
+     Important When a macro such as NSLocalizedString() is used as a format
+     string, it is crucial to ensure that all formatting arguments are present
+     with the same types in the same order in any translated string tables, to
+     avoid runtime argument type mismatches.
+
+   Encoding
+     By default, genstrings assumes source files are UTF-8 encoded, or contain
+     no non-ASCII characters.  Files in other encodings will not be read
+     successfully unless the -encoding charset-name flag is used to specify
+     their encoding as an IANA charset name.  The -macRoman flag can also be
+     used to specify input file are expected to be in the Mac Roman encoding.
+     However, developers are strongly encouraged to move to UTF-8 as the
+     encoding for source files as the -macRoman option may be removed in
+     future versions.
+
+     The -d flag may be used to request genstrings attempt to detect an input
+     file's encoding if it is not read successfully as UTF-8 or using its
+     specified encoding.
+
+     Embedded non-ASCII characters in UTF-8 files, as well as non-ASCII
+     characters specified by the escape sequences \uxxxx and \Uxxxxxxxx are
+     read automatically by genstrings.  The -u option and genstrings specific
+     escape sequence are also supported.
+
+     Generated .strings files are UTF-16 encoded by default.  Host endianness
+     is used unless the -bigEndian or -littleEndian option is specified.  The
+     endian options do not affect .strings files being appended to with the -a
+     option.  The byte order of the existing file is maintained.
+
+OPTIONS
+     -a          Allows the output to be appended to the old output files.
+                 However, -a causes the results to be appended to the end of
+                 the old file and not merged.
+
+     -SwiftUI    Enables support for recognizing the SwiftUI Text()
+                 initializer, including its single-argument variant.
+
+     -s routine [-s routine ...]
+                 Recognizes routine() as equivalent to NSLocalizedString().
+                 For example, -s MyLocalString will catch calls to
+                 MyLocalString(), MyLocalStringFromTable(), and so on.
+
+                 This flag may be passed any number of times.
+
+                 Note Specifying routine names to treat as equivalent to
+                 NSLocalizedString() does not prevent either
+                 NSLocalizedString() or CFCopyLocalizedString() or any of
+                 their variants from being recognized.
+
+     -skipTable Table [-skipTable Table ...]
+                 Causes genstrings to skip over the file for Table.  Note that
+                 any entries in this table will not be generated.
+
+                 This flag may be passed any number of times.
+
+     -noPositionalParameters
+                 Turns off generation of positional parameters.
+
+     -u          Allow unicode characters in the value of strings files.  Any
+                 occurrence of \Uxxxx (where xxxx are four or eight hex
+                 digits) in the source code will be written to the strings
+                 file with its Unicode value (in terms of \Uxxxx) for the key,
+                 but the actual Unicode value for its value.
+
+                 For example, NSLocalizedString(@"AB\U0043D", @"Comment") will
+                 result in an entry such as "AB\U0043D" = "ABCD" in the string
+                 table.
+
+                 Note that non-ASCII characters can now be handled
+                 automatically without this option.  See Encoding section
+                 above for details.
+
+     -encoding charset-name
+                 Read source files using the given IANA charset name.  See
+                 Encoding section above for details.
+
+     -macRoman   For compatibility, read source files using Mac Roman
+                 encoding.  See Encoding section above for details.
+
+     -q          Turns off multiple key/value pairs warning.
+
+     -bigEndian | -littleEndian
+                 Causes output files to be written with the specified
+                 endianness and be prefixed with an appropriate byte-order
+                 marker.
+
+     -o outputDir
+                 Specifies the directory in which the output string tables
+                 should be created.

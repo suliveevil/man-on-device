@@ -109,13 +109,13 @@ OPTIONS
                  :help initialization
 
      -i shada    Use shada instead of the default
-                 ~/.local/share/nvim/shada/main.shada.  If shada is NONE, do
+                 ~/.local/state/nvim/shada/main.shada.  If shada is NONE, do
                  not read or write a ShaDa file.  :help shada
 
      --noplugin  Skip loading plugins.  Implied by -u NONE.
 
-     --clean     Mimic a fresh install of Nvim. Skip loading non-builtin
-                 plugins and shada (viminfo) file.
+     --clean     Start Nvim with "factory defaults" (no user config and
+                 plugins, no shada).  :help --clean
 
      -o[N]       Open N windows stacked horizontally.  If N is omitted, open
                  one window for each file.  If N is less than the number of
@@ -190,7 +190,7 @@ OPTIONS
 
 ENVIRONMENT
      NVIM_LOG_FILE
-                 Low-level log file, usually found at ~/.cache/nvim/log.
+                 Low-level log file, usually found at ~/.local/state/nvim/log.
                  :help $NVIM_LOG_FILE
 
      VIM         Used to locate user files, such as init.vim.  System-
@@ -203,10 +203,15 @@ ENVIRONMENT
                  Path to the user-local configuration directory, see FILES.
                  Defaults to ~/.config.  :help xdg
 
-     XDG_DATA_HOME
+     XDG_STATE_HOME
                  Like XDG_CONFIG_HOME, but used to store data not generally
                  edited by the user, namely swap, backup, and ShaDa files.
-                 Defaults to ~/.local/share.  :help xdg
+                 Defaults to ~/.local/state.  :help xdg
+
+     XDG_DATA_HOME
+                 Like XDG_CONFIG_HOME, but used to store data not generally
+                 edited by the user, things like runtime files.  Defaults to
+                 ~/.local/share.  :help xdg
 
      VIMINIT     Ex commands to be executed at startup.  :help VIMINIT
 

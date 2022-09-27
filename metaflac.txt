@@ -5,11 +5,46 @@ NAME
 SYNOPSIS
        metaflac [ options ] [ operations ] FLACfile ...
 
-
 DESCRIPTION
        Use metaflac to list, add, remove, or edit metadata in one or more FLAC
        files.  You may perform one major operation, or many shorthand
        operations at a time.
+
+GENERAL USAGE
+       metaflac is the command-line .flac file metadata editor.  You can use
+       it to list the contents of metadata blocks, edit, delete or insert
+       blocks, and manage padding.
+
+       metaflac takes a set of “options” (though some are not optional) and a
+       set of FLAC files to operate on.  There are three kinds of “options”:
+
+       • Major operations, which specify a mode of operation like listing
+         blocks, removing blocks, etc.  These will have sub-operations
+         describing exactly what is to be done.
+
+       • Shorthand operations, which are convenient synonyms for major
+         operations.  For example, there is a shorthand operation –show-
+         sample-rate that shows just the sample rate field from the STREAMINFO
+         metadata block.
+
+       • Global options, which affect all the operations.
+
+       All of these are described in the tables below.  At least one shorthand
+       or major operation must be supplied.  You can use multiple shorthand
+       operations to do more than one thing to a file or set of files.  Most
+       of the common things to do to metadata have shorthand operations.  As
+       an example, here is how to show the MD5 signatures for a set of three
+       FLAC files:
+
+       metaflac --show-md5sum file1.flac file2.flac file3.flac
+
+       Another example; this removes all DESCRIPTION and COMMENT tags in a set
+       of FLAC files, and uses the –preserve-modtime global option to keep the
+       FLAC file modification times the same (usually when files are edited
+       the modification time is set to the current time):
+
+       metaflac --preserve-modtime --remove-tag=DESCRIPTION
+       --remove-tag=COMMENT file1.flac file2.flac file3.flac
 
 OPTIONS
        --preserve-modtime
@@ -66,20 +101,20 @@ SHORTHAND OPERATIONS
               Show the vendor string from the VORBIS_COMMENT block.
 
        --show-tag=name
-              Show all tags where the field name matches 'name'.
+              Show all tags where the field name matches `name'.
 
        --remove-tag=name
-              Remove all tags whose field name is 'name'.
+              Remove all tags whose field name is `name'.
 
        --remove-first-tag=name
-              Remove first tag whose field name is 'name'.
+              Remove first tag whose field name is `name'.
 
        --remove-all-tags
               Remove all tags, leaving only the vendor string.
 
        --set-tag=field
               Add a tag.  The field must comply with the Vorbis comment spec,
-              of the form "NAME=VALUE".  If there is currently no tag block,
+              of the form “NAME=VALUE”.  If there is currently no tag block,
               one will be created.
 
        --set-tag-from-file=field
@@ -88,29 +123,29 @@ SHORTHAND OPERATIONS
               utf8-convert is specified, the contents will be converted to
               UTF-8 from the local charset.  This can be used to store a
               cuesheet in a tag (e.g.  --set-tag-from-
-              file="CUESHEET=image.cue").  Do not try to store binary data in
-              tag fields!  Use APPLICATION blocks for that.
+              file=“CUESHEET=image.cue”).  Do not try to store binary data in
+              tag fields! Use APPLICATION blocks for that.
 
        --import-tags-from=file
-              Import tags from a file.  Use '-' for stdin.  Each line should
+              Import tags from a file.  Use `-' for stdin.  Each line should
               be of the form NAME=VALUE.  Multi-line comments are currently
               not supported.  Specify --remove-all-tags and/or --no-
               utf8-convert before --import-tags-from if necessary.  If FILE is
-              '-' (stdin), only one FLAC file may be specified.
+              `-' (stdin), only one FLAC file may be specified.
 
        --export-tags-to=file
-              Export tags to a file.  Use '-' for stdout.  Each line will be
+              Export tags to a file.  Use `-' for stdout.  Each line will be
               of the form NAME=VALUE.  Specify --no-utf8-convert if necessary.
 
        --import-cuesheet-from=file
-              Import a cuesheet from a file.  Use '-' for stdin.  Only one
+              Import a cuesheet from a file.  Use `-' for stdin.  Only one
               FLAC file may be specified.  A seekpoint will be added for each
               index point in the cuesheet to the SEEKTABLE unless --no-cued-
               seekpoints is specified.
 
        --export-cuesheet-to=file
               Export CUESHEET block to a cuesheet file, suitable for use by CD
-              authoring software.  Use '-' for stdout.  Only one FLAC file may
+              authoring software.  Use `-' for stdout.  Only one FLAC file may
               be specified on the command line.
 
        --import-picture-from={FILENAME|SPECIFICATION}
@@ -120,92 +155,11 @@ SHORTHAND OPERATIONS
               form can be used.  The SPECIFICATION is a string whose parts are
               separated by | (pipe) characters.  Some parts may be left empty
               to invoke default values.  FILENAME is just shorthand for
-              "||||FILENAME".  The format of SPECIFICATION is
-
-              [TYPE]|[MIME-
-              TYPE]|[DESCRIPTION]|[WIDTHxHEIGHTxDEPTH[/COLORS]]|FILE
-
-              TYPE is optional; it is a number from one of:
-
-              0: Other
-
-              1: 32x32 pixels 'file icon' (PNG only)
-
-              2: Other file icon
-
-              3: Cover (front)
-
-              4: Cover (back)
-
-              5: Leaflet page
-
-              6: Media (e.g. label side of CD)
-
-              7: Lead artist/lead performer/soloist
-
-              8: Artist/performer
-
-              9: Conductor
-
-              10: Band/Orchestra
-
-              11: Composer
-
-              12: Lyricist/text writer
-
-              13: Recording Location
-
-              14: During recording
-
-              15: During performance
-
-              16: Movie/video screen capture
-
-              17: A bright coloured fish
-
-              18: Illustration
-
-              19: Band/artist logotype
-
-              20: Publisher/Studio logotype
-
-              The default is 3 (front cover).  There may only be one picture
-              each of type 1 and 2 in a file.
-
-              MIME-TYPE is optional; if left blank, it will be detected from
-              the file.  For best compatibility with players, use pictures
-              with MIME type image/jpeg or image/png.  The MIME type can also
-              be --> to mean that FILE is actually a URL to an image, though
-              this use is discouraged.
-
-              DESCRIPTION is optional; the default is an empty string.
-
-              The next part specifies the resolution and color information.
-              If the MIME-TYPE is image/jpeg, image/png, or image/gif, you can
-              usually leave this empty and they can be detected from the file.
-              Otherwise, you must specify the width in pixels, height in
-              pixels, and color depth in bits-per-pixel.  If the image has
-              indexed colors you should also specify the number of colors
-              used.  When manually specified, it is not checked against the
-              file for accuracy.
-
-              FILE is the path to the picture file to be imported, or the URL
-              if MIME type is -->
-
-              For example, "|image/jpeg|||../cover.jpg" will embed the JPEG
-              file at ../cover.jpg, defaulting to type 3 (front cover) and an
-              empty description.  The resolution and color info will be
-              retrieved from the file itself.
-
-              The specification
-              "4|-->|CD|320x300x24/173|http://blah.blah/backcover.tiff" will
-              embed the given URL, with type 4 (back cover), description "CD",
-              and a manually specified resolution of 320x300, 24 bits-per-
-              pixel, and 173 colors.  The file at the URL will not be fetched;
-              the URL itself is stored in the PICTURE metadata block.
+              “||||FILENAME”.  For details on the specification, see the
+              section Picture specification in the flac(1) man page.
 
        --export-picture-to=file
-              Export PICTURE block to a file.  Use '-' for stdout.  Only one
+              Export PICTURE block to a file.  Use `-' for stdout.  Only one
               FLAC file may be specified on the command line.  The first
               PICTURE block will be exported unless --export-picture-to is
               preceded by a --block-number=# option to specify the exact
@@ -257,55 +211,44 @@ SHORTHAND OPERATIONS
 MAJOR OPERATIONS
        --list List the contents of one or more metadata blocks to stdout.  By
               default, all metadata blocks are listed in text format.  Use the
-              following options to change this behavior:
-
-              --block-number=#[,#[...]]
-                     An optional comma-separated list of block numbers to
-                     display.  The first block, the STREAMINFO block, is block
-                     0.
-
-              --block-type=type[,type[...]]
-
-              --except-block-type=type[,type[...]]
-                     An optional comma-separated list of block types to be
-                     included or ignored with this option.  Use only one of
-                     --block-type or --except-block-type.  The valid block
-                     types are: STREAMINFO, PADDING, APPLICATION, SEEKTABLE,
-                     VORBIS_COMMENT, PICTURE.  You may narrow down the types
-                     of APPLICATION blocks displayed as follows:
-
-                     APPLICATION:abcd        The APPLICATION block(s) whose
-                     textual repre- sentation of the 4-byte ID is "abcd"
-                     APPLICATION:0xXXXXXXXX  The APPLICATION block(s) whose
-                     hexadecimal big- endian representation of the 4-byte ID
-                     is "0xXXXXXXXX".  For the example "abcd" above the
-                     hexadecimal equivalalent is 0x61626364
-
-                     Note: if both --block-number and --[except-]block-type
-                     are specified, the result is the logical AND of both
-                     arguments.
-
-              --application-data-format=hexdump|text
-                     If the application block you are displaying contains
-                     binary data but your --data-format=text, you can display
-                     a hex dump of the application data contents instead using
-                     --application-data-format=hexdump.
+              options --block-number, --block-type or --except-block-type to
+              change this behavior.
 
        --remove
-              Remove one or more metadata blocks from the metadata.  Unless
-              --dont-use-padding is specified, the blocks will be replaced
-              with padding.  You may not remove the STREAMINFO block.
+              Remove one or more metadata blocks from the metadata.  Use the
+              options --block-number, --block-type or --except-block-type to
+              specify which blocks should be removed.  Note that if both
+              --block-number and --[except-]block-type are specified, the
+              result is the logical AND of both arguments.  Unless --dont-use-
+              padding is specified, the blocks will be replaced with padding.
+              You may not remove the STREAMINFO block.
 
-              --block-number=#[,#[...]]
+       --block-number=#[,#[...]]
+              An optional comma-separated list of block numbers to display.
+              The first block, the STREAMINFO block, is block 0.
 
-              --block-type=type[,type[...]]
+       --block-type=type[,type[...]]
 
-              --except-block-type=type[,type[...]]
-                     See --list above for usage.
+       --except-block-type=type[,type[...]]
+              An optional comma-separated list of block types to be included
+              or ignored with this option.  Use only one of --block-type or
+              --except-block-type.  The valid block types are: STREAMINFO,
+              PADDING, APPLICATION, SEEKTABLE, VORBIS_COMMENT, PICTURE.  You
+              may narrow down the types of APPLICATION blocks selected by
+              appending APPLICATION with a colon and the ID of the APPLICATION
+              block in either ASCII or hexadecimal representation.  E.g.
+              APPLICATION:abcd for the APPLICATION block(s) whose textual
+              representation of the 4-byte ID is “abcd” or
+              APPLICATION:0xXXXXXXXX for the APPLICATION block(s) whose
+              hexadecimal big- endian representation of the 4-byte ID is
+              “0xXXXXXXXX”.  For the example “abcd” above the hexadecimal
+              equivalalent is 0x61626364
 
-                     Note: if both --block-number and --[except-]block-type
-                     are specified, the result is the logical AND of both
-                     arguments.
+       --application-data-format=hexdump|text
+              If the application block you are displaying contains binary data
+              but your --data-format=text, you can display a hex dump of the
+              application data contents instead using --application-data-
+              format=hexdump.
 
        --remove-all
               Remove all metadata blocks (except the STREAMINFO block) from
@@ -320,4 +263,4 @@ MAJOR OPERATIONS
               them into a single block.
 
 SEE ALSO
-       flac(1).
+       flac(1)

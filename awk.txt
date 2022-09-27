@@ -66,7 +66,7 @@ DESCRIPTION
        by the value of SUBSEP.
 
        The print statement prints its arguments on the standard output (or on
-       a file if > file  or >> file  is present or on a pipe if | cmd  is
+       a file if > file or >> file is present or on a pipe if | cmd is
        present), separated by the current output field separator, and
        terminated by the output record separator.  file and cmd may be literal
        names or parenthesized expressions; identical string values in
@@ -124,20 +124,20 @@ DESCRIPTION
             their corresponding upper-case equivalents.
 
        The ``function'' getline sets $0 to the next input record from the
-       current input file; getline < file  sets $0 to the next record from
-       file.  getline x sets variable x instead.  Finally, cmd | getline
-       pipes the output of cmd into getline; each call of getline returns the
-       next line of output from cmd.  In all cases, getline returns 1 for a
+       current input file; getline < file sets $0 to the next record from
+       file.  getline x sets variable x instead.  Finally, cmd | getline pipes
+       the output of cmd into getline; each call of getline returns the next
+       line of output from cmd.  In all cases, getline returns 1 for a
        successful input, 0 for end of file, and -1 for an error.
 
        Patterns are arbitrary Boolean combinations (with ! || &&) of regular
-       expressions and relational expressions.  Regular expressions are as
-       defined in re_format(7).  Isolated regular expressions in a pattern
-       apply to the entire line.  Regular expressions may also occur in
-       relational expressions, using the operators ~ and !~.  /re/ is a
-       constant regular expression; any string (constant or variable) may be
-       used as a regular expression, except in the position of an isolated
-       regular expression in a pattern.
+       expressions and relational expressions.  Regular expressions are as in
+       egrep; see grep(1).  Isolated regular expressions in a pattern apply to
+       the entire line.  Regular expressions may also occur in relational
+       expressions, using the operators ~ and !~.  /re/ is a constant regular
+       expression; any string (constant or variable) may be used as a regular
+       expression, except in the position of an isolated regular expression in
+       a pattern.
 
        A pattern may consist of two patterns separated by a comma; in this
        case, the action is performed for all lines from an occurrence of the
@@ -222,8 +222,8 @@ EXAMPLES
        END  { print "sum is", s, " average is", s/NR }
 
               Add up first column, print sum and average.
-              /start/, /stop/
-              Print all lines between start/stop pairs.
+       /start/, /stop/
+       Print all lines between start/stop pairs.
 
        BEGIN     {    # Simulate echo(1)
             for (i = 1; i < ARGC; i++) printf "%s ", ARGV[i]
@@ -244,3 +244,32 @@ BUGS
        worse.
 
        Only eight-bit characters sets are handled correctly.
+
+UNUSUAL FLOATING-POINT VALUES
+       Awk was designed before IEEE 754 arithmetic defined Not-A-Number (NaN)
+       and Infinity values, which are supported by all modern floating-point
+       hardware.
+
+       Because awk uses strtod(3) and atof(3) to convert string values to
+       double-precision floating-point values, modern C libraries also convert
+       strings starting with inf and nan into infinity and NaN values
+       respectively.  This led to strange results, with something like this:
+
+       echo nancy | awk '{ print $1 + 0 }'
+
+       printing nan instead of zero.
+
+       Awk now follows GNU AWK, and prefilters string values before attempting
+       to convert them to numbers, as follows:
+
+       Hexadecimal values
+              Hexadecimal values (allowed since C99) convert to zero, as they
+              did prior to C99.
+
+       NaN values
+              The two strings +nan and -nan (case independent) convert to NaN.
+              No others do.  (NaNs can have signs.)
+
+       Infinity values
+              The two strings +inf and -inf (case independent) convert to
+              positive and negative infinity, respectively.  No others do.
