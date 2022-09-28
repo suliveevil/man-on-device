@@ -1,0 +1,45 @@
+NAME
+       tldr - A collection of simplified and community-driven man pages.
+
+SYNOPSIS
+       tldr [-v] [OPTION]... SEARCH
+
+DESCRIPTION
+       tldr is a collection of simplified and community-driven man pages, for
+       commonly used commandline tools.
+
+OPTIONS
+       -v     verbose output
+
+       --version
+              output version information and exit
+
+       -h, --help
+              display help and exit
+
+       -u, --update
+              update local database and exit
+
+       -c, --clear-cache
+              remove local database and exit
+
+       -p, --platform=PLATFORM
+              select platform, supported are linux / osx / sunos / windows /
+              common
+
+       -r, --render=PATH
+              render a local page for testing purposes
+
+EXIT STATUS
+       0 on success, any other positive value otherwise
+
+SEE ALSO
+       The source is available at:
+
+REPORTING BUGS
+       Report bugs through the Github repository:
+
+COPYRIGHT
+       The MIT License (MIT)
+
+       Copyright (c) 2016 Arvid Gerstmann.
