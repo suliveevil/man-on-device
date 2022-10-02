@@ -27,7 +27,10 @@ OPTIONS
               Specifies the debug level.
 
        -i num, --index=num
-              This option takes an integer number as its argument.
+              This option takes an integer number as its argument.  The
+              default number for this option is:
+                   3
+
 
        -u str, --username=str
 

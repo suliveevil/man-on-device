@@ -3,7 +3,7 @@ NAME
 
    Synopsis
    Version
-       8.19.1
+       8.19.2
 
    Description
        npm is the package manager for the Node JavaScript platform.  It puts

@@ -46,7 +46,7 @@ OPTIONS
        -v             Version number --prefix path
 
        -p             Specify alternative prefix path (the default is
-                      /opt/homebrew/Cellar/php/8.1.10_1)
+                      /opt/homebrew/Cellar/php/8.1.11)
 
        --pid file
        -g             Specify the PID file location.
@@ -138,7 +138,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes php-fpm, version 8.1.10.
+       This manpage describes php-fpm, version 8.1.11.
 
 COPYRIGHT
        Copyright © The PHP Group

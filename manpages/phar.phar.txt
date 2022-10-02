@@ -374,7 +374,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes phar, version 8.1.10.
+       This manpage describes phar, version 8.1.11.
 
 COPYRIGHT
        Copyright © The PHP Group

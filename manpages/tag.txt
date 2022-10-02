@@ -1,0 +1,89 @@
+NAME
+       tag - A tool for manipulating and querying file tags.
+
+SYNOPSIS
+       tag [options] [command] [<tags> <path>] ...
+
+COMMANDS
+       -a, --add tags_path
+              Add tags to file
+
+       -r, --remove tags_path
+              Remove tags from file
+
+       -s, --set tags_path
+              Set tags on file
+
+       -m, --match tags_path
+              Display files with matching tags
+
+       -f, --find tags_path
+              Find all files with tags (-A, -e, -R ignored)
+
+       -u, --usage tags_path
+              Display tag usage
+
+       -l, --list tags_path
+              List the tags on file
+
+DESCRIPTION
+       <tags> is a comma-separated list of tag names; use * to match/find any
+       tag (but not no tags).
+
+OPTIONS
+       -v, --version
+              Display version
+
+       -h, --help
+              Display this help
+
+       -A, --all
+              Display invisible files while enumerating
+
+       -e, --enter
+              Enter and enumerate directories provided
+
+       -R, --recursive
+              Recursively process directories
+
+       -n, --name
+              Turn on filename display in output (default)
+
+       -N, --no-name
+              Turn off filename display in output (list, find, match)
+
+       -t, --tags
+              Turn on tags display in output (find, match)
+
+       -T, --no-tags
+              Turn off tags display in output (list)
+
+       -g, --garrulous
+              Display tags each on own line (list, find, match)
+
+       -G, --no-garrulous
+              Display tags comma-separated after filename (default)
+
+       -c, --color
+              Display tag names in color
+
+       -p, --slash
+              Terminate each directory name with a slash
+
+       -0, --null
+              Terminate lines with NUL ( ) for use with xargs -0
+
+           --home
+              Find tagged files in user home directory
+
+           --local
+              Find tagged files in home + local filesystems
+
+           --networkqq
+              Find tagged files in home + local + network filesystems
+
+BUGS
+       Report on https://github.com/jdberry/tag/issues
+
+AUTHOR
+       James Berry

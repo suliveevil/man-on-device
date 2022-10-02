@@ -236,7 +236,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes php, version 8.1.10.
+       This manpage describes php, version 8.1.11.
 
 COPYRIGHT
        Copyright © The PHP Group
