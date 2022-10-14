@@ -2,7 +2,7 @@ NAME
        sccmap - extract strongly connected components of directed graphs
 
 SYNOPSIS
-       sccmap [-dsv] [ -ooutfile ] [ files ]
+       sccmap [-dsSv] [ -ooutfile ] [ files ]
 
 DESCRIPTION
        sccmap decomposes digraphs into strongly connected components and an

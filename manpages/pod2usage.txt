@@ -40,7 +40,9 @@ OPTIONS AND ARGUMENTS
                the option "utf8". It turns on generation of utf8 output.
 
        file    The pathname of a file containing pod documentation to be
-               output in usage message format (defaults to standard input).
+               output in usage message format. If omitted, standard input is
+               read - but the output is then formatted with Pod::Text only -
+               unless a specific formatter has been specified with -formatter.
 
 DESCRIPTION
        pod2usage will read the given input file looking for pod documentation
@@ -51,7 +53,7 @@ DESCRIPTION
        Please see "pod2usage()" in Pod::Usage.
 
 SEE ALSO
-       Pod::Usage, pod2text(1)
+       Pod::Usage, pod2text, Pod::Text, Pod::Text::Termcap, perldoc
 
 AUTHOR
        Please report bugs using <http://rt.cpan.org>.

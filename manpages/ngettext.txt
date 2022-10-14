@@ -43,7 +43,7 @@ DESCRIPTION
        the environment variable TEXTDOMAIN.  If the message catalog is not
        found in the regular directory, another location can be specified with
        the environment variable TEXTDOMAINDIR.  Standard search directory:
-       /opt/homebrew/Cellar/gettext/0.21/share/locale
+       /opt/homebrew/Cellar/gettext/0.21.1/share/locale
 
 AUTHOR
        Written by Ulrich Drepper.
@@ -54,7 +54,7 @@ REPORTING BUGS
        <bug-gettext@gnu.org>.
 
 COPYRIGHT
-       Copyright © 1995-1997, 2000-2020 Free Software Foundation, Inc.
+       Copyright © 1995-1997, 2000-2022 Free Software Foundation, Inc.
        License GPLv3+: GNU GPL version 3 or later
        <https://gnu.org/licenses/gpl.html>
        This is free software: you are free to change and redistribute it.

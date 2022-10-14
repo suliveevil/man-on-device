@@ -6,10 +6,10 @@ SYNOPSIS
 
        perlbug [ -v ] [ -a address ] [ -s subject ] [ -b body | -f inputfile ]
        [ -F outputfile ] [ -r returnaddress ] [ -e editor ]
-       [ -c adminaddress | -C ] [ -S ] [ -t ]  [ -d ]  [ -A ]  [ -h ] [ -T ]
+       [ -c adminaddress | -C ] [ -S ] [ -t ]  [ -d ]  [ -h ] [ -T ]
 
        perlbug [ -v ] [ -r returnaddress ]
-        [ -A ] [ -ok | -okay | -nok | -nokay ]
+        [ -ok | -okay | -nok | -nokay ]
 
        perlthanks
 
@@ -43,18 +43,15 @@ DESCRIPTION
            Type "perl -v" at the command line to find out.
 
        Are you running the latest released version of perl?
-           Look at http://www.perl.org/ to find out.  If you are not using the
-           latest released version, please try to replicate your bug on the
-           latest stable release.
+           Look at <http://www.perl.org/> to find out.  If you are not using
+           the latest released version, please try to replicate your bug on
+           the latest stable release.
 
            Note that reports about bugs in old versions of Perl, especially
            those which indicate you haven't also tested the current stable
            release of Perl, are likely to receive less attention from the
            volunteers who build and maintain Perl than reports about bugs in
            the current release.
-
-           This tool isn't appropriate for reporting bugs in any version prior
-           to Perl 5.0.
 
        Are you sure what you have is a bug?
            A significant number of the bug reports we get turn out to be
@@ -161,37 +158,32 @@ DESCRIPTION
        flaming them is likely to have the opposite effect of the one you
        want.)
 
-       Feel free to update the ticket about your bug on http://rt.perl.org if
-       a new version of Perl is released and your bug is still present.
+       Feel free to update the ticket about your bug on
+       <https://github.com/Perl/perl5/issues> if a new version of Perl is
+       released and your bug is still present.
 
 OPTIONS
-       -a      Address to send the report to.  Defaults to perlbug@perl.org.
-
-       -A      Don't send a bug received acknowledgement to the reply address.
-               Generally it is only a sensible to use this option if you are a
-               perl maintainer actively watching perl porters for your message
-               to arrive.
+       -a      Address to send the report to instead of saving to a file.
 
        -b      Body of the report.  If not included on the command line, or in
-               a file with -f, you will get a chance to edit the message.
+               a file with -f, you will get a chance to edit the report.
 
-       -C      Don't send copy to administrator.
+       -C      Don't send copy to administrator when sending report by mail.
 
-       -c      Address to send copy of report to.  Defaults to the address of
-               the local perl administrator (recorded when perl was built).
+       -c      Address to send copy of report to when sending report by mail.
+               Defaults to the address of the local perl administrator
+               (recorded when perl was built).
 
        -d      Data mode (the default if you redirect or pipe output).  This
-               prints out your configuration data, without mailing anything.
-               You can use this with -v to get more complete data.
+               prints out your configuration data, without saving or mailing
+               anything.  You can use this with -v to get more complete data.
 
        -e      Editor to use.
 
        -f      File containing the body of the report.  Use this to quickly
-               send a prepared message.
+               send a prepared report.
 
-       -F      File to output the results to instead of sending as an email.
-               Useful particularly when running perlbug on a machine with no
-               direct internet connection.
+       -F      File to output the results to.  Defaults to perlbug.rep.
 
        -h      Prints a brief summary of the options.
 
@@ -222,14 +214,13 @@ OPTIONS
        -r      Your return address.  The program will ask you to confirm its
                default if you don't use this option.
 
-       -S      Send without asking for confirmation.
+       -S      Save or send the report without asking for confirmation.
 
-       -s      Subject to include with the message.  You will be prompted if
+       -s      Subject to include with the report.  You will be prompted if
                you don't supply one on the command line.
 
-       -t      Test mode.  The target address defaults to
-               perlbug-test@perl.org.  Also makes it possible to command
-               perlbug from a pipe or file, for testing purposes.
+       -t      Test mode.  Makes it possible to command perlbug from a pipe or
+               file, for testing purposes.
 
        -T      Send a thank-you note instead of a bug report.
 

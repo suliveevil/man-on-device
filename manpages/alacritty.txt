@@ -30,12 +30,15 @@ FLAGS
               Prints version information
 
 OPTIONS
-       --class <instance> | <instance>,<general>
+       --class <general> | <general>,<instance>
               Defines the window class hint on Linux [default:
               Alacritty,Alacritty]
 
-              On Wayland the instance class sets the `app_id`, while the
-              general class is ignored.
+              When only the general class is passed, instance will be set to
+              the same value.
+
+              On Wayland the general class sets the `app_id`, while the
+              instance class is ignored.
 
        -e, --command <command>...
               Command and args to execute (must be last argument)
@@ -54,8 +57,8 @@ OPTIONS
               %APPDATA%\alacritty\alacritty.yml.
 
        --embed <parent>
-              Defines the X11 window ID (as a decimal integer) to embed
-              Alacritty within
+              X11 window ID to embed Alacritty within (decimal or hexadecimal
+              with "0x" prefix)
 
        -o, --option <option>...
               Override configuration file options [example: cursor.style=Beam]

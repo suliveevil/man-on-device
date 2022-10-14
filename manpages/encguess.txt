@@ -2,7 +2,7 @@ NAME
        encguess - guess character encodings of files
 
 VERSION
-       $Id: encguess,v 0.2 2016/08/04 03:15:58 dankogai Exp $
+       $Id: encguess,v 0.3 2020/12/02 01:28:17 dankogai Exp $
 
 SYNOPSIS
          encguess [switches] filename...
@@ -12,7 +12,7 @@ SYNOPSIS
          show this message and exit.
 
        -s
-         specify a list of "suspect encoding types" to test, seperated by
+         specify a list of "suspect encoding types" to test, separated by
          either ":" or ","
 
        -S

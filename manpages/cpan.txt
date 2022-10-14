@@ -173,10 +173,10 @@ DESCRIPTION
        others matter to the levels above them. Some of these are specified by
        the Perl Toolchain Gang:
 
-       Lancaster Concensus:
+       Lancaster Consensus:
        <https://github.com/Perl-Toolchain-Gang/toolchain-site/blob/master/lancaster-consensus.md>
 
-       Oslo Concensus:
+       Oslo Consensus:
        <https://github.com/Perl-Toolchain-Gang/toolchain-site/blob/master/oslo-consensus.md>
 
        NONINTERACTIVE_TESTING

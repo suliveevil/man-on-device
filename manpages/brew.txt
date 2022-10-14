@@ -412,6 +412,10 @@ COMMANDS
        -v, --verbose
               Print the verification and postinstall steps.
 
+       -n, --dry-run
+              Show what would be installed, but do not actually install
+              anything.
+
        --formula
               Treat all named arguments as formulae.
 

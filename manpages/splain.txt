@@ -64,10 +64,10 @@ DESCRIPTION
        a stack trace.
 
    The splain Program
-       While apparently a whole nuther program, splain is actually nothing
-       more than a link to the (executable) diagnostics.pm module, as well as
-       a link to the diagnostics.pod documentation.  The -v flag is like the
-       "use diagnostics -verbose" directive.  The -p flag is like the
+       Another program, splain is actually nothing more than a link to the
+       (executable) diagnostics.pm module, as well as a link to the
+       diagnostics.pod documentation.  The -v flag is like the "use
+       diagnostics -verbose" directive.  The -p flag is like the
        $diagnostics::PRETTY variable.  Since you're post-processing with
        splain, there's no sense in being able to enable() or disable()
        processing.
