@@ -1,5 +1,5 @@
 NAME
-       unbound - Unbound DNS validating resolver 1.16.3.
+       unbound - Unbound DNS validating resolver 1.17.0.
 
 SYNOPSIS
        unbound [-h] [-d] [-p] [-v] [-c cfgfile]

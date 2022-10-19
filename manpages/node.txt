@@ -302,6 +302,10 @@ OPTIONS
 
      --test  Starts the Node.js command line test runner.
 
+     --test-name-pattern
+             A regular expression that configures the test runner to only
+             execute tests whose name matches the provided pattern.
+
      --test-only
              Configures the test runner to only execute top level tests that
              have the `only` option set.

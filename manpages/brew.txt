@@ -699,6 +699,10 @@ COMMANDS
               Evaluate all available formulae and casks, whether installed or
               not. Implied if HOMEBREW_EVAL_ALL is set.
 
+       --no-simulate
+              Don´t simulate other system configurations when checking
+              formulae and casks.
+
    reinstall [options] formula|cask [...]
        Uninstall and then reinstall a formula or cask using the same options
        it was originally installed with, plus any appended options specific to
@@ -2105,11 +2109,14 @@ DEVELOPER COMMANDS
        --before
               Use the commit at the specified date as the start commit.
 
-   vendor-gems [--update=]
+   vendor-gems [--update=] [--no-commit]
        Install and commit Homebrew´s vendored gems.
 
        --update
               Update all vendored Gems to the latest version.
+
+       --no-commit
+              Do not generate a new commit upon completion.
 
 GLOBAL CASK OPTIONS
        These options are applicable to the install, reinstall, and upgrade
