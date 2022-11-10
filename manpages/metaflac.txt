@@ -124,7 +124,7 @@ SHORTHAND OPERATIONS
               UTF-8 from the local charset.  This can be used to store a
               cuesheet in a tag (e.g.  --set-tag-from-
               file=“CUESHEET=image.cue”).  Do not try to store binary data in
-              tag fields! Use APPLICATION blocks for that.
+              tag fields!  Use APPLICATION blocks for that.
 
        --import-tags-from=file
               Import tags from a file.  Use `-' for stdin.  Each line should

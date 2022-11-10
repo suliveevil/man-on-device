@@ -16,8 +16,8 @@ DESCRIPTION
        be updated automatically from others whenever the others change.
 
        To prepare to use make, you must write a file called the makefile that
-       describes the relationships among files in your program, and the states
-       the commands for updating each file.  In a program, typically the
+       describes the relationships among files in your program, and provides
+       commands for updating each file.  In a program, typically the
        executable file is updated from object files, which are in turn made by
        compiling source files.
 
@@ -31,10 +31,10 @@ DESCRIPTION
        files to decide which of the files need to be updated.  For each of
        those files, it issues the commands recorded in the makefile.
 
-       make executes commands in the makefile to update one or more target
-       names, where name is typically a program.  If no -f option is present,
-       make will look for the makefiles GNUmakefile, makefile, and Makefile,
-       in that order.
+       make executes commands in the makefile to update one or more targets,
+       where target is typically a program.  If no -f option is present, make
+       will look for the makefiles GNUmakefile, makefile, and Makefile, in
+       that order.
 
        Normally you should call your makefile either makefile or Makefile.
        (We recommend Makefile because it appears prominently near the
@@ -73,11 +73,16 @@ OPTIONS
        --debug[=FLAGS]
             Print debugging information in addition to normal processing.  If
             the FLAGS are omitted, then the behavior is the same as if -d was
-            specified.  FLAGS may be a for all debugging output (same as using
-            -d), b for basic debugging, v for more verbose basic debugging, i
-            for showing implicit rules, j for details on invocation of
-            commands, and m for debugging while remaking makefiles.  Use n to
-            disable all previous debugging flags.
+            specified.  FLAGS may be any or all of the following names, comma-
+            or space-separated.  Only the first character is significant: the
+            rest may be omitted: all for all debugging output (same as using
+            -d), basic for basic debugging, verbose for more verbose basic
+            debugging, implicit for showing implicit rule search operations,
+            jobs for details on invocation of commands, makefile for debugging
+            while remaking makefiles, print shows all recipes that are run
+            even if they are silent, and why shows the reason make decided to
+            rebuild each target.  Use none to disable all previous debugging
+            flags.
 
        -e, --environment-overrides
             Give variables taken from the environment precedence over
@@ -107,6 +112,10 @@ OPTIONS
             there is more than one -j option, the last one is effective.  If
             the -j option is given without an argument, make will not limit
             the number of jobs that can run simultaneously.
+
+       --jobserver-style=style
+            The style of jobserver to use.  The style may be one of fifo,
+            pipe, or sem (Windows only).
 
        -k, --keep-going
             Continue as much as possible after an error.  While the target
@@ -193,6 +202,13 @@ OPTIONS
        --no-print-directory
             Turn off -w, even if it was turned on implicitly.
 
+       --shuffle[=MODE]
+            Enable shuffling of goal and prerequisite ordering.  MODE is one
+            of none to disable shuffle mode, random to shuffle prerequisites
+            in random order, reverse to consider prerequisites in reverse
+            order, or an integer <seed> which enables random mode with a
+            specific seed value.  If MODE is omitted the default is random.
+
        -W file, --what-if=file, --new-file=file, --assume-new=file
             Pretend that the target file has just been modified.  When used
             with the -n flag, this shows you what would happen if you were to
@@ -228,7 +244,7 @@ AUTHOR
        Roland McGrath.  Maintained by Paul Smith.
 
 COPYRIGHT
-       Copyright © 1992-1993, 1996-2020 Free Software Foundation, Inc.  This
+       Copyright © 1992-1993, 1996-2022 Free Software Foundation, Inc.  This
        file is part of GNU make.
 
        GNU Make is free software; you can redistribute it and/or modify it
@@ -242,4 +258,4 @@ COPYRIGHT
        for more details.
 
        You should have received a copy of the GNU General Public License along
-       with this program.  If not, see http://www.gnu.org/licenses/.
+       with this program.  If not, see https://www.gnu.org/licenses/.

@@ -54,6 +54,10 @@ OPTIONS
               Create a new frame instead of trying to use the current Emacs
               frame.
 
+       -r --reuse-frame
+              Reuse an existing frame if one exists, otherwise create a new
+              frame.
+
        -F, --frame-parameters=ALIST
               Set the parameters of a newly-created frame.
 
@@ -73,6 +77,10 @@ OPTIONS
               Return immediately without waiting for you to "finish" the
               buffer in Emacs.  If combined with --eval, this option is
               ignored.
+
+       -w, --timeout=N
+              How long to wait, in seconds, for Emacs to respond before giving
+              up.  The default is 0, which means to wait forever.
 
        -nw, -t, --tty
               Open a new Emacs frame on the current terminal.

@@ -502,6 +502,10 @@ COMMANDS
        --[no-]quarantine
               Disable/enable quarantining of downloads (default: enabled).
 
+       --adopt
+              Adopt existing artifacts in the destination that are identical
+              to those being installed. Cannot be combined with --force.
+
        --skip-cask-deps
               Skip installing cask dependencies.
 
@@ -766,6 +770,10 @@ COMMANDS
 
        --[no-]quarantine
               Disable/enable quarantining of downloads (default: enabled).
+
+       --adopt
+              Adopt existing artifacts in the destination that are identical
+              to those being installed. Cannot be combined with --force.
 
        --skip-cask-deps
               Skip installing cask dependencies.
@@ -1277,6 +1285,9 @@ DEVELOPER COMMANDS
        --only-json-tab
               When passed with --json, the tab will be written to the JSON
               file but not the bottle.
+
+       --no-all-checks
+              Don´t try to create an all bottle or stop a no-change upload.
 
        --committer
               Specify a committer name and email in git´s standard author
@@ -2219,7 +2230,7 @@ OFFICIAL EXTERNAL COMMANDS
        process has finished successfully.
 
        brew autoupdate stop
-           Stop autoupdating, but retain plist & logs.
+           Stop autoupdating, but retain plist and logs.
 
        brew autoupdate delete
            Cancel the autoupdate, delete the plist and logs.
@@ -2245,9 +2256,9 @@ OFFICIAL EXTERNAL COMMANDS
 
        --enable-notification
               Send a notification when the autoupdate process has finished
-              successfully, if terminal-notifier is installed & found. Must be
-              passed with start. <NOTE: Notifications are enabled by default
-              on macOS Catalina and newer.>
+              successfully, if terminal-notifier is installed and found. Must
+              be passed with start. Note: notifications are enabled by default
+              on macOS Catalina and newer.
 
        --immediate
               Starts the autoupdate command immediately, instead of waiting
@@ -3059,9 +3070,9 @@ AUTHORS
        Homebrew´s other current maintainers are Alexander Bayandin, Bevan Kay,
        Branch Vincent, Caleb Xu, Carlo Cabrera, Daniel Nachun, Dawid Dziurla,
        Dustin Rodrigues, Eric Knibbe, George Adams, Markus Reiter, Maxim
-       Belkin, Miccal Matthews, Michael Cho, Nanda H Krishna, Randall, Rui
-       Chen, Sam Ford, Shaun Jackman, Steve Peters, Thierry Moisan and Vitor
-       Galvao.
+       Belkin, Miccal Matthews, Michael Cho, Nanda H Krishna, Patrick Linnane,
+       Randall, Rui Chen, Sam Ford, Shaun Jackman, Steve Peters, Thierry
+       Moisan and Vitor Galvao.
 
        Former maintainers with significant contributions include Claudia
        Pellegrino, Seeker, William Woodruff, Jan Viljanen, JCount, commitay,

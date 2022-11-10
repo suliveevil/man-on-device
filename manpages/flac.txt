@@ -336,7 +336,7 @@ OPTIONS
 
        --apply-replaygain-which-is-not-lossless[=<specification>]
               Applies ReplayGain values while decoding.  WARNING: THIS IS NOT
-              LOSSLESS. DECODED AUDIO WILL NOT BE IDENTICAL TO THE ORIGINAL
+              LOSSLESS.  DECODED AUDIO WILL NOT BE IDENTICAL TO THE ORIGINAL
               WITH THIS OPTION. This option is useful for example in
               transcoding media servers, where the client does not support
               ReplayGain.  For details on the use of this option, see the
@@ -442,7 +442,7 @@ OPTIONS
               converted to UTF-8 from the local charset.  This can be used to
               store a cuesheet in a tag (e.g. --tag-from-
               file=“CUESHEET=image.cue”).  Do not try to store binary data in
-              tag fields! Use APPLICATION blocks for that.
+              tag fields!  Use APPLICATION blocks for that.
 
        -b #, --blocksize=#
               Specify the blocksize in samples.  The default is 1152 for -l 0,
@@ -593,7 +593,7 @@ OPTIONS
 
    ReplayGain application specification
        The option --apply-replaygain-which-is-not-lossless[=<specification>]
-       applies ReplayGain values while decoding. WARNING: THIS IS NOT
+       applies ReplayGain values while decoding.  WARNING: THIS IS NOT
        LOSSLESS.  DECODED AUDIO WILL NOT BE IDENTICAL TO THE ORIGINAL WITH
        THIS OPTION.** This option is useful for example in transcoding media
        servers, where the client does not support ReplayGain.

@@ -77,6 +77,9 @@ DESCRIPTION
               -u user, --user=user
                       Load user's init file.
 
+              --init-directory=directory
+                      Start emacs with user-emacs-directory set to directory.
+
               -t file, --terminal=file
                       Use specified file as the terminal instead of using
                       stdin/stdout.  This must be the first argument specified

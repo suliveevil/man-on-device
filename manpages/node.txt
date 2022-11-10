@@ -78,9 +78,6 @@ OPTIONS
      --enable-source-maps
              Enable Source Map V3 support for stack traces.
 
-     --experimental-global-customevent
-             Expose the CustomEvent on the global scope.
-
      --experimental-global-webcrypto
              Expose the Web Crypto API on the global scope.
 
@@ -97,15 +94,20 @@ OPTIONS
      --experimental-policy
              Use the specified file as a security policy.
 
+     --experimental-shadow-realm
+             Use this flag to enable ShadowRealm support.
+
      --no-experimental-fetch
              Disable experimental support for the Fetch API.
 
+     --no-experimental-global-customevent
+             Disable exposition of the CustomEvent on the global scope.
+
+     --no-experimental-global-webcrypto
+             Disable exposition of the Web Crypto API on the global scope.
+
      --no-experimental-repl-await
              Disable top-level await keyword support in REPL.
-
-     --experimental-specifier-resolution
-             Select extension resolution algorithm for ES Modules; either
-             'explicit' (default) or 'node'.
 
      --experimental-vm-modules
              Enable experimental ES module support in VM module.
