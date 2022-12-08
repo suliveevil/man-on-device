@@ -76,7 +76,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes phpdbg, for PHP version 8.1.12.
+       This manpage describes phpdbg, for PHP version 8.1.13.
 
 COPYRIGHT
        Copyright © The PHP Group

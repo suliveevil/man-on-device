@@ -1365,7 +1365,7 @@ DEVELOPER COMMANDS
               Specify the new version for the cask.
 
        --message
-              Append message to the default pull request message.
+              Prepend message to the default pull request message.
 
        --url  Specify the URL for the new download.
 
@@ -1438,7 +1438,7 @@ DEVELOPER COMMANDS
               redundant.
 
        --message
-              Append message to the default pull request message.
+              Prepend message to the default pull request message.
 
        --url  Specify the URL for the new download. If a URL is specified, the
               SHA-256 checksum of the new download should also be specified.
@@ -1897,6 +1897,8 @@ DEVELOPER COMMANDS
    ruby [options] (-e text|file)
        Run a Ruby instance with Homebrew´s libraries loaded. For example, brew
        ruby -e "puts :gcc.f.deps" or brew ruby script.rb.
+
+       Run e.g. brew ruby -- --version to pass arbitrary arguments to ruby.
 
        -r     Load a library using require.
 
@@ -2823,7 +2825,7 @@ ENVIRONMENT
        HOMEBREW_DOCKER_REGISTRY_TOKEN
               Use this bearer token for authenticating with a Docker registry
               proxying GitHub Packages. Preferred over
-              HOMEBREW_DOCKER_REGISTRY_TOKEN_BASIC.
+              HOMEBREW_DOCKER_REGISTRY_BASIC_AUTH_TOKEN.
 
        HOMEBREW_GITHUB_PACKAGES_USER
               Use this username when accessing the GitHub Packages Registry

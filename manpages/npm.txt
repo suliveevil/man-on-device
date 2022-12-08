@@ -2,8 +2,10 @@ NAME
        npm - javascript package manager
 
    Synopsis
+         npm
+
    Version
-       8.19.2
+       8.19.3
 
    Description
        npm is the package manager for the Node JavaScript platform.  It puts
@@ -74,11 +76,12 @@ NAME
        If you're using npm to develop and publish your code, check out the
        following help topics:
 
-       • json: Make a package.json file.  See npm help package.json.
+       • json: Make a package.json file.  See package.json
+         /configuring-npm/package-json.
 
        • link: Links your current working code into Node's path, so that you
          don't have to reinstall every time you make a change.  Use npm help
-         npm link to do this.
+         link to do this.
 
        • install: It's a good idea to install things if you don't need the
          symbolic link.  Especially, installing other peoples code from the
@@ -148,7 +151,7 @@ NAME
 
        • npm help help
 
-       • npm help package.json
+       • package.json /configuring-npm/package-json
 
        • npm help npmrc
 

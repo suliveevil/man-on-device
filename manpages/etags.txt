@@ -191,7 +191,7 @@ OPTIONS
               \(ATTRIBUTE\|ENTITY\|FUNCTION\|PACKAGE\(_BODY\)?\
               \|PROCEDURE\|PROCESS\|TYPE\)[_\t]+\([^_\t(]+\)/\3/'
 
-              Tag TCL files (this last example shows the usage of a
+              Tag Tcl files (this last example shows the usage of a
               tagregexp):
               --lang=none --regex='/proc[_\t]+\([^_\t]+\)/\1/'
 

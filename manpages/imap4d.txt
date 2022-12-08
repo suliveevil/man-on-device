@@ -1,0 +1,20 @@
+NAME
+       imap4d - manual page for imap4d (GNU Mailutils)
+
+SYNOPSIS
+       imap4d [OPTION...]
+
+DESCRIPTION
+       GNU imap4d -- the IMAP4D daemon
+
+REPORTING BUGS
+       Report bugs to <bug-mailutils@gnu.org>.
+
+SEE ALSO
+       The full documentation for imap4d is maintained as a Texinfo manual.
+       If the info and imap4d programs are properly installed at your site,
+       the command
+
+              info imap4d
+
+       should give you access to the complete manual.

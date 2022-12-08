@@ -1,0 +1,20 @@
+NAME
+       pop3d - manual page for pop3d (GNU Mailutils)
+
+SYNOPSIS
+       pop3d [OPTION...]
+
+DESCRIPTION
+       GNU pop3d -- the POP3 daemon
+
+REPORTING BUGS
+       Report bugs to <bug-mailutils@gnu.org>.
+
+SEE ALSO
+       The full documentation for pop3d is maintained as a Texinfo manual.  If
+       the info and pop3d programs are properly installed at your site, the
+       command
+
+              info pop3d
+
+       should give you access to the complete manual.

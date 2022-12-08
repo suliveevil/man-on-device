@@ -1,0 +1,20 @@
+NAME
+       popauth - manual page for popauth (GNU Mailutils)
+
+SYNOPSIS
+       popauth [OPTION...]
+
+DESCRIPTION
+       GNU popauth -- manage POP3 authentication database
+
+REPORTING BUGS
+       Report bugs to <bug-mailutils@gnu.org>.
+
+SEE ALSO
+       The full documentation for popauth is maintained as a Texinfo manual.
+       If the info and popauth programs are properly installed at your site,
+       the command
+
+              info popauth
+
+       should give you access to the complete manual.

@@ -1,0 +1,57 @@
+NAME
+     d2 – compiles and renders d2 diagrams into svgs.
+
+SYNOPSIS
+     d2 [--watch false] [--theme 0] file.d2 [file.svg] | [file.png]
+     d2 [--watch false] [--theme 0] file.d2 [...]
+     d2 layout [name]
+
+DESCRIPTION
+     d2 compiles and renders file.d2 to file.svg | file.png.
+
+     Pass - to have d2 read from stdin or write to stdout.
+
+     See more docs, the source code and license at
+     https://oss.terrastruct.com/d2
+
+OPTIONS
+     -w, --watch false
+                 Watch for changes to input and live reload. Use $PORT and
+                 $HOST to specify the listening address.
+
+     -h, --host localhost
+                 Host listening address when used with watch.
+
+     -p, --port 0
+                 Port listening address when used with watch.
+
+     -t, --theme 0
+                 Set the diagram theme to the passed integer. For a list of
+                 available options, see https://oss.terrastruct.com/d2.
+
+     -l, --layout dagre
+                 Set the diagram layout engine to the passed string. For a
+                 list of available options, run layout.
+
+     -b, --bundle true
+                 Bundle all assets and layers into the output svg.
+
+     -d, --debug
+                 Print debug logs.
+
+     -h, --help  Print usage information and exit.
+
+     -v, --version
+                 Print version information and exit.
+
+SUBCOMMANDS
+     layout      Lists available layout engine options with short help.
+
+     layout [name]
+                 Display long help for a particular layout engine.
+
+SEE ALSO
+     d2plugin-tala(1)
+
+AUTHORS
+     Terrastruct Inc.
