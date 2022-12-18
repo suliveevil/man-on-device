@@ -1,0 +1,23 @@
+NAME
+       xapian-pos - Debug positional data in a Xapian database
+
+SYNOPSIS
+       xapian-pos [OPTIONS] DATABASE
+
+DESCRIPTION
+       xapian-pos - Debug positional data in a Xapian database
+
+OPTIONS
+       -d, --doc=DOCID
+              show positions for document DOCID
+
+       -s, --start=POS
+              specifies the first position to show
+
+       -e, --end=POS
+              specifies the last position to show
+
+       --help display this help and exit
+
+       --version
+              output version information and exit

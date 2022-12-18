@@ -1196,6 +1196,9 @@ DEVELOPER COMMANDS
        --[no-]appcast
               Audit the appcast.
 
+       --[no-]signing
+              Audit for signed apps, which are required on ARM
+
        --token-conflicts
               Audit for token conflicts.
 

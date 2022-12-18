@@ -219,7 +219,7 @@ SEE ALSO
 
 BUGS
        You can view the list of known bugs or report any new bug you found at:
-       http://bugs.php.net
+       https://github.com/php/php-src/issues
 
 AUTHORS
        The PHP Group: Thies C. Arntzen, Stig Bakken, Andi Gutmans, Rasmus
@@ -236,7 +236,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes php, version 8.1.13.
+       This manpage describes php, version 8.2.0.
 
 COPYRIGHT
        Copyright © The PHP Group

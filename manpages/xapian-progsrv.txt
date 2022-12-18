@@ -1,0 +1,20 @@
+NAME
+       xapian-progsrv - Piped server for use with Xapian's remote backend
+
+SYNOPSIS
+       xapian-progsrv [OPTIONS] DATABASE_DIRECTORY...
+
+DESCRIPTION
+       xapian-progsrv - Piped server for use with Xapian's remote backend
+
+OPTIONS
+       --timeout MSECS
+              set timeout
+
+       --writable
+              allow updates (only one database directory allowed)
+
+       --help display this help and exit
+
+       --version
+              output version information and exit

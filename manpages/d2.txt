@@ -2,14 +2,21 @@ NAME
      d2 – compiles and renders d2 diagrams into svgs.
 
 SYNOPSIS
-     d2 [--watch false] [--theme 0] file.d2 [file.svg] | [file.png]
-     d2 [--watch false] [--theme 0] file.d2 [...]
+     d2 [--watch false] [--theme 0] file.d2 [file.svg | file.png]
      d2 layout [name]
+     d2 fmt file.d2
 
 DESCRIPTION
      d2 compiles and renders file.d2 to file.svg | file.png.
 
+     It defaults to file.svg if no output path is passed.
+
      Pass - to have d2 read from stdin or write to stdout.
+
+     Never use the presence of the output file to check for success.  Always
+     use the exit status of d2.  This is because sometimes when errors occur
+     while rendering, d2 still write out a partial render anyway to enable
+     iteration on a broken diagram.
 
      See more docs, the source code and license at
      https://oss.terrastruct.com/d2
@@ -49,6 +56,9 @@ SUBCOMMANDS
 
      layout [name]
                  Display long help for a particular layout engine.
+
+     fmt file.d2
+                 Format file.d2.
 
 SEE ALSO
      d2plugin-tala(1)

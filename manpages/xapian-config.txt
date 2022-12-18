@@ -1,0 +1,33 @@
+NAME
+       xapian-config - report information about the installed version of
+       xapian
+
+SYNOPSIS
+       xapian-config OPTION...
+
+DESCRIPTION
+       xapian-config - report information about the installed version of
+       xapian
+
+OPTIONS
+       --cxxflags
+              output all preprocessor and C++ compiler flags
+
+       --libs output all linker flags
+
+       --ltlibs
+              output linker flags for linking using GNU libtool
+
+       --static
+              make other options report values for static linking
+
+       --swigflags
+              output preprocessor flags for use with SWIG
+
+       --help output this help and exit
+
+       --version
+              output version information and exit
+
+REPORTING BUGS
+       Report bugs to <https://xapian.org/bugs>.

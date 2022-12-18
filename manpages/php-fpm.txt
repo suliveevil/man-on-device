@@ -12,7 +12,7 @@ DESCRIPTION
        /opt/homebrew/var/log/php-fpm.log.
 
        Most options are set in the configuration file. The configuration file
-       is /opt/homebrew/etc/php/8.1/php-fpm.conf. By default, php-fpm will
+       is /opt/homebrew/etc/php/8.2/php-fpm.conf. By default, php-fpm will
        respond to CGI requests listening on localhost http port 9000.
        Therefore php-fpm expects your webserver to forward all requests for
        '.php' files to port 9000 and you should edit your webserver
@@ -43,10 +43,11 @@ OPTIONS
        -m             Show compiled in modules
 
        --version
-       -v             Version number --prefix path
+       -v             Version number
 
+       --prefix path
        -p             Specify alternative prefix path (the default is
-                      /opt/homebrew/Cellar/php/8.1.13)
+                      /opt/homebrew/Cellar/php/8.2.0)
 
        --pid file
        -g             Specify the PID file location.
@@ -54,7 +55,7 @@ OPTIONS
        --fpm-config file
        -y             Specify alternative path to FastCGI process manager
                       configuration file (the default is
-                      /opt/homebrew/etc/php/8.1/php-fpm.conf)
+                      /opt/homebrew/etc/php/8.2/php-fpm.conf)
 
        --test
        -t             Test FPM configuration file and exit If called twice
@@ -121,7 +122,7 @@ SEE ALSO
 
 BUGS
        You can view the list of known bugs or report any new bug you found at:
-       http://bugs.php.net
+       https://github.com/php/php-src/issues
 
 AUTHORS
        PHP-FPM SAPI was written by Andrei Nigmatulin. The mailing-lists are
@@ -138,7 +139,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes php-fpm, version 8.1.13.
+       This manpage describes php-fpm, version 8.2.0.
 
 COPYRIGHT
        Copyright © The PHP Group

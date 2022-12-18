@@ -2307,6 +2307,7 @@ Comment Operators
 
 
               # hi
+
               a: cat # comment
               # great
               b: # key comment
@@ -2330,6 +2331,7 @@ Comment Operators
 
 
               # welcome!
+
               a: cat # meow
               # have a great day
 
@@ -6596,6 +6598,7 @@ Path
        paths into an empty object,
 
        Given a sample.yml file of:
+
 
 
               parentA: bob

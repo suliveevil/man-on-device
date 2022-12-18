@@ -31,7 +31,7 @@ SEE ALSO
        php(1)
 
 VERSION INFORMATION
-       This manpage describes php, version 8.1.13.
+       This manpage describes php, version 8.2.0.
 
 COPYRIGHT
        Copyright © The PHP Group

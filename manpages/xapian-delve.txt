@@ -1,0 +1,57 @@
+NAME
+       delve - Inspect the contents of a Xapian database
+
+SYNOPSIS
+       delve [OPTIONS] DATABASE...
+
+DESCRIPTION
+       delve - Inspect the contents of a Xapian database
+
+OPTIONS
+       -a     show all terms in the database
+
+       -A <prefix>
+              show all terms in the database with given prefix
+
+       -r <recno>
+              for term list(s)
+
+       -t <term>
+              for posting list(s)
+
+       -t <term> -r <recno>
+              for position list(s)
+
+       -s, --stemmer=LANG
+              set the stemming language, the default is 'none'
+
+       -1     output one list entry per line
+
+       -V[<type>]<valueno>
+              output value valueno for each document referred to (or each
+              document in the database if no -r options).  <type> can be: E:
+              escape in a C-like way (default) I: decode as a packed integer
+              R: show the raw value (which may contain binary data,
+
+       newlines, invalid UTF-8, etc)
+              S: decode using Xapian::sortable_unserialise()
+
+       -V[<type>]
+              output all values for each document referred to.  <type> is as
+              above.
+
+       -d     output document data for each document referred to
+
+       -z     for db, count documents with length 0
+
+       -v     extra info (wdf and len for postlist; wdf and termfreq for
+              termlist; number of terms for db; termfreq when showing all
+              terms; value bounds and freq when showing all values in a slot)
+
+       -vv    even more info (also show collection freq and wdf upper bound
+              for terms)
+
+       --help display this help and exit
+
+       --version
+              output version information and exit

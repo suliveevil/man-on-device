@@ -63,7 +63,7 @@ SEE ALSO
 
 BUGS
        You can view the list of known bugs or report any new bug you found at
-       http://bugs.php.net/
+       https://github.com/php/php-src/issues
 
 AUTHORS
        Written by Felipe Pena, Joe Watkins and Bob Weinand, formatted by
@@ -76,7 +76,7 @@ AUTHORS
        of contributors all around the world.
 
 VERSION INFORMATION
-       This manpage describes phpdbg, for PHP version 8.1.13.
+       This manpage describes phpdbg, for PHP version 8.2.0.
 
 COPYRIGHT
        Copyright © The PHP Group
